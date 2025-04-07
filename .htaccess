@@ -1,4 +1,4 @@
 RewriteEngine On
-RewriteBase /du_an/du_an_mo_hinh_mvc/
+RewriteBase /du_an/8XBET/
 RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg)$ [NC]
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
