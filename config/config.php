@@ -10,7 +10,7 @@ return array(
     'base' => '/du_an/8XBET',
     'db' => array(
         'host'     => 'localhost',
-        'name'     => '(chua co db )',
+        'name'     => '8xbet',
         'username' => 'root',
         'password' => ''
     )
