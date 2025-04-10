@@ -1,6 +1,6 @@
 <?php
-require_once 'app/models/UserModel.php';
-require_once 'app/models/AdminModel.php';
+require_once __DIR__ . '/../models/UserModel.php';
+require_once __DIR__ . '/../models/AdminModel.php';
 
 class AuthController
 {
@@ -16,7 +16,7 @@ class AuthController
                 session_start();
                 $_SESSION['user'] = $admin['username'];
                 $_SESSION['role'] = 'admin';
-                header("Location: index.php?controller=auth&action=adminDashboard");
+                header("Location: /du_an/8XBET/index.php?controller=auth&action=adminDashboard");
                 exit;
             }
 
@@ -26,7 +26,7 @@ class AuthController
                 session_start();
                 $_SESSION['user'] = $user['username'];
                 $_SESSION['role'] = 'user';
-                header("Location: index.php?controller=auth&action=userDashboard");
+                header("Location: /du_an/8XBET/index.php?controller=auth&action=userDashboard");
                 exit;
             }
 
@@ -43,7 +43,7 @@ class AuthController
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        if ($_SESSION['role'] !== 'admin') {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             echo "Bạn không có quyền truy cập!";
             exit;
         }
@@ -55,7 +55,7 @@ class AuthController
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        if ($_SESSION['role'] !== 'user') {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
             echo "Bạn không có quyền truy cập!";
             exit;
         }

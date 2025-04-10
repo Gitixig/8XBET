@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteBase /du_an/8XBET/
-RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg)$ [NC]
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg|php)$ [NC]
+RewriteCond %{REQUEST_URI} !^/app/views/add_User/add_User\.php$ [NC]
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

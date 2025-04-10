@@ -87,7 +87,7 @@
 </style>
 
 <body>
-    <form action="AuthController.php" method="POST">
+    <form action="/du_an/8XBET/index.php?controller=auth&action=login" method="POST">
         <div class="menueff menueff-card">
             <h1>Login</h1>
             <label for="username"></label>
