@@ -19,6 +19,10 @@ class AuthController
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=adminDashboard");
                 exit;
             }
+            else{
+                $error= "Sai tài khoản hoặc mật khẩu!";
+            }
+           
 
             // Kiểm tra trong bảng users
             $user = User::authenticate($username, $password);
@@ -29,14 +33,20 @@ class AuthController
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=userDashboard");
                 exit;
             }
+            else{
+                $error= "Sai tài khoản hoặc mật khẩu!";
+            }
+           
 
             // Sai tài khoản hoặc mật khẩu
-            $error = "Sai tài khoản hoặc mật khẩu!";
-            include 'app/views/login/login.php';
-        } else {
-            include 'app/views/login/login.php';
-        }
-    }
+        //     $error = "Sai tài khoản hoặc mật khẩu!";
+        //     include 'app/views/login/login.php';
+        // } else {
+        //     include 'app/views/login/login.php';
+        // }
+    } 
+    include 'app/views/login/login.php';
+}
 
     public function adminDashboard()
     {

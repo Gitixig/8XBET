@@ -30,7 +30,10 @@ class UserController
             }
         } else {
             // Hiển thị form đăng ký
+            echo "<script>alert('Sai tên tài khoản hoặc mật khẩu.');</script>";
+            echo "<script>window.location.href = '/du_an/8XBET/index.php?controller=auth&action=login';</script>";
             include __DIR__ . '/../views/add_User/add_User.php';
+            exit();
         }
     }
 }

@@ -94,7 +94,10 @@
             <input type="text" name="username" id="username" class="form-control menueff menueff-input" placeholder="Username">
             <label for="password"></label>
             <input type="password" name="password" id="password" class="form-control menueff menueff-input" placeholder="Password">
-            <button class="menueff menueff-button" name="frmsubmit">Login</button>
+            <button class="menueff menueff-button" name="frmsubmit">Login</button>     
+            <?php if(!empty($error)) { ?>
+            <P style="color:red;"><?php echo $error; ?></P>
+            <?php } ?> 
             <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px;">Bạn chưa có tài khoản? Đăng ký nhé!</a>
         </div>
     </form>
