@@ -84,6 +84,12 @@
         background-color: #d1d9e6;
         border: 1px solid rgb(240, 244, 249);
     }
+
+    p {
+        color: red;
+        font-size: 16px;
+        margin-top: 10px;
+    }
 </style>
 
 <body>
@@ -96,6 +102,9 @@
             <input type="password" name="password" id="password" class="form-control menueff menueff-input" placeholder="Password">
             <button class="menueff menueff-button" name="frmsubmit">Login</button>
             <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px;">Bạn chưa có tài khoản? Đăng ký nhé!</a>
+            <?php if (isset($error)): ?>
+                <p><?php echo $error; ?></p>
+            <?php endif; ?>
         </div>
     </form>
-</body
+</body>

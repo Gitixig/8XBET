@@ -10,7 +10,6 @@ class AuthController
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            // Kiểm tra trong bảng admins
             $admin = Admin::authenticate($username, $password);
             if ($admin) {
                 session_start();
@@ -20,17 +19,17 @@ class AuthController
                 exit;
             }
 
-            // Kiểm tra trong bảng users
             $user = User::authenticate($username, $password);
             if ($user) {
                 session_start();
+                $_SESSION['fullname'] = $user['fullname'];
                 $_SESSION['user'] = $user['username'];
                 $_SESSION['role'] = 'user';
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=userDashboard");
                 exit;
             }
 
-            // Sai tài khoản hoặc mật khẩu
+           
             $error = "Sai tài khoản hoặc mật khẩu!";
             include 'app/views/login/login.php';
         } else {
@@ -61,5 +60,18 @@ class AuthController
         }
         include 'app/views/login/user_dashboard.php';
     }
+
+    public function logout()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_unset();
+        session_destroy();
+        header("Location: /du_an/8XBET/index.php?controller=auth&action=login");
+        exit;
+    }
 }
+
+
 ?>

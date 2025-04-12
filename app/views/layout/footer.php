@@ -4,7 +4,6 @@
     </div>
 </footer>
 
-<!-- Latest compiled and minified CSS & JS -->
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
 

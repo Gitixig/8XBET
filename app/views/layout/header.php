@@ -23,7 +23,7 @@
                     <li class="nav-item"><a class="nav-link" href="CLB.php">CLB</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
                     <?php
-                    if (!isset($_SESSION['UserLogin'])) {
+                    if (empty($username)) {
 
                         echo '<li class="nav-item"><a class="nav-link" href="adduseer.php">Sign in</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
