@@ -71,5 +71,16 @@ class AuthController
         }
         include 'app/views/login/user_dashboard.php';
     }
+    public function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header("location: du_an/8XBET/index?controller=auth&action=login");
+        exit();
+    }
 }
+
+    
+
 ?>

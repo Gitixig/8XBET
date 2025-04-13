@@ -23,13 +23,13 @@
                     <li class="nav-item"><a class="nav-link" href="CLB.php">CLB</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
                     <?php
-                    if ($username) {
+                    if (!isset($_SESSION['user'])) {
 
                         echo '<li class="nav-item"><a class="nav-link" href="/du_an/8XBET/app/views/add_User/add_User.php">Sign in</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="/du_an/8XBET/app/views/login/login.php">Login</a></li>';
                     } else {
 
-                        echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="du_an/8XBET/index?controller=auth&action=logout">Logout</a></li>';
                     }
                     if (isset($_SESSION['Role']) && $_SESSION['Role'] === "admin") {
 
