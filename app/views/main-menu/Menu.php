@@ -22,8 +22,27 @@
     .dropdown-menu:hover {
         transform: scale(1.05);
     }
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #B22222;
+        color: white;
+    }
+
+
+    .dropdown-menu .dropdown-item {
+        color: white;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 </style>
-</style>
+
 
 <body>
 

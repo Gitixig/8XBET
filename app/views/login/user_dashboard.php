@@ -15,14 +15,13 @@ include __DIR__ . '/../layout/header.php';
 </head>
 
 <body class="bg-light text-dark">
-   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Trang chủ</a>
                     </li>
@@ -39,14 +38,7 @@ include __DIR__ . '/../layout/header.php';
 
     <div class="container mt-5">
         <h2>Xin chào, <?= htmlspecialchars($_SESSION['user']) ?>!</h2>
-
-        <div class="mt-4">
-            <div>
-                <h5 class="card-title">Thông báo</h5>
-                <p class="card-text">Chào mừng bạn đến với hệ thống của chúng tôi. Hãy khám phá các tính năng dành riêng cho bạn!</p>
-                <a href="#" class="btn btn-primary">Tìm hiểu thêm</a>
-            </div>
-        </div>
+        <p>Chào mừng bạn đến với trang người dùng.</p>
     </div>
 
     <!-- Footer -->

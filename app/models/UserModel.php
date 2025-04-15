@@ -39,4 +39,10 @@ class User
 
         return false; 
     }
+    public function getUserInfo($username)
+    {
+        $stmt = $this->db->prepare("SELECT username, created_at FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

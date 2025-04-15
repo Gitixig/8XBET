@@ -30,6 +30,28 @@ class UserController
             }
         } else {
             include __DIR__ . '/../views/add_User/add_User.php';
+            exit();
         }
     }
+    
+public function userDashboard()
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($_SESSION['user'])) {
+        header("Location: /du_an/8XBET/index.php?controller=auth&action=login");
+        exit;
+    }
+
+    $userModel = new User();
+    $userInfo = $userModel->getUserInfo($_SESSION['user']);
+
+    if (!$userInfo) {
+        die("Không tìm thấy thông tin người dùng.");
+    }
+
+    include __DIR__ . '/../views/login/user_dashboard.php';
+}
 }

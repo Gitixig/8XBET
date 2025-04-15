@@ -23,10 +23,10 @@
                     <li class="nav-item"><a class="nav-link" href="CLB.php">CLB</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
                     <?php
-                    if (empty($username)) {
+                    if (!isset($_SESSION['UserLogin'])) {
 
-                        echo '<li class="nav-item"><a class="nav-link" href="adduseer.php">Sign in</a></li>';
-                        echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="/du_an/8XBET/app/views/add_User/add_User.php">Sign in</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="/du_an/8XBET/app/views/login/login.php">Login</a></li>';
                     } else {
 
                         echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
