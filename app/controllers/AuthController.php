@@ -68,5 +68,19 @@ class AuthController
         }
         include 'app/views/login/user_dashboard.php';
     }
+    public function logout()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Hủy session
+        session_unset();
+        session_destroy();
+
+        // Chuyển hướng về trang đăng nhập
+        header("Location: /du_an/8XBET/index.php?controller=auth&action=login");
+        exit;
+    }
 }
 ?>

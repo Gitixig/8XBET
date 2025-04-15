@@ -12,8 +12,6 @@
     <style>
         body {
             background-color: #f8f8f8;
-            /* Tạo hiệu ứng đậm */
-
         }
 
         .header {
@@ -189,7 +187,7 @@
     <h3 style="text-align: center; margin-top: 30px;">
         <b>Có Thể Bạn Quan Tâm: </b>
     </h3>
-    <div class="container" style="">
+    <div class="container">
         <div class="row">
             <div class="col" style="max-width: 2500px;">
                 <div class="container">

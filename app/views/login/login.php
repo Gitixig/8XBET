@@ -1,18 +1,14 @@
-<?php include __DIR__ . '/../layout/header.php'; ?>
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
 
 <style>
     body {
         margin: 0;
         height: 100vh;
         font-family: Arial, sans-serif;
-        background-image: url('/du_an/8XBET/public/img/img-backgroud_login.jpg');
-        /* Nếu file ảnh trong cùng thư mục */
+        background-image: url('/du_an/8XBET/public/img/sanbong_login.png');
         background-size: cover;
-        /* Hiển thị toàn bộ màn hình */
         background-position: center;
-        /* Căn giữa ảnh */
         background-repeat: no-repeat;
-        /* Không lặp lại ảnh */
     }
 
     .menueff {
@@ -85,6 +81,17 @@
         border: 1px solid rgb(240, 244, 249);
     }
 
+    .menueff-button:hover {
+        background-color: white;
+        /* Đổi màu nền thành trắng */
+        color: black;
+        /* Đổi màu chữ thành đen */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        /* Thêm hiệu ứng bóng */
+        transition: all 0.3s ease;
+        /* Hiệu ứng chuyển đổi mượt mà */
+    }
+
     p {
         color: red;
         font-size: 16px;
@@ -100,10 +107,10 @@
             <input type="text" name="username" id="username" class="form-control menueff menueff-input" placeholder="Username">
             <label for="password"></label>
             <input type="password" name="password" id="password" class="form-control menueff menueff-input" placeholder="Password">
-            <button class="menueff menueff-button" name="frmsubmit">Login</button>     
-            <?php if(!empty($error)) { ?>
-            <P style="color:red;"><?php echo $error; ?></P>
-            <?php } ?> 
+            <button class="menueff menueff-button" name="frmsubmit">Login</button>
+            <?php if (!empty($error)) { ?>
+                <P style="color:red;"><?php echo $error; ?></P>
+            <?php } ?>
             <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px;">Bạn chưa có tài khoản? Đăng ký nhé!</a>
             <?php if (isset($error)): ?>
                 <p><?php echo $error; ?></p>
