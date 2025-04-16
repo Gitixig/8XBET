@@ -53,30 +53,34 @@
                 <i class="bi bi-list fs-2"></i>
             </button>
 
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../../../public/img/img-logo/ChatGPT Image 14_46_48 12 thg 4, 2025.png" style="width: 70px;" alt="Logo">
+            <a class="navbar-brand d-flex align-items-center" href="/du_an/8XBET/app/views/Home/Home.php">
+                <img src="/du_an/8XBET/public/img/img-logo/ChatGPT Image 14_46_48 12 thg 4, 2025.png" style="width: 70px;" alt="Logo">
             </a>
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav text-center">
+                <li class="nav-item"><a class="nav-link text-white active" href="/du_an/8XBET/app/views/Home/Home.php"><b>HOME</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white active" href="#"><b>TTCN</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
-                    <li class="nav-item dropdown">
+                    <?php if (!isset($_SESSION['user'])){?>  
+                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <b style="color: white;">SIGN IN</b>
                         </a>
                         <ul class="dropdown-menu" style="background-color:rgb(240, 13, 13);">
-                            <li><a class="dropdown-item" href="../login/login.php"> <b style="color: white;">LOGIN</b></a></li>
+                            <li><a class="dropdown-item" href="/du_an/8XBET/app/views/login/login.php"> <b style="color: white;">LOGIN</b></a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../add_User/add_User.php"> <b style="color: white;">SINUP</b></a></li>
+                            <li><a class="dropdown-item" href="/du_an/8XBET/app/views/add_User/add_User.php"> <b style="color: white;">SIGN UP</b></a></li>
+                            
                         </ul>
                     </li>
-                </ul>
+                <?php }?>
+            </ul>
             </div>
             <a class="nav-link text-white me-3 d-flex align-items-center" href="../main-menu/Search.php">
                 <b>Search</b>
