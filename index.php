@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Include file cấu hình
+require_once __DIR__ . '/config/config.php';
+
 spl_autoload_register(function ($class) {
     foreach (['app/controllers/', 'app/models/', 'config/'] as $dir) {
         $file = $dir . $class . '.php';

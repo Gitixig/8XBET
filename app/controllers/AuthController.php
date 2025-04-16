@@ -1,4 +1,10 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$username = $_SESSION['user'] ?? null;
+$role = $_SESSION['role'] ?? null;
+
 require_once __DIR__ . '/../models/UserModel.php';
 require_once __DIR__ . '/../models/AdminModel.php';
 
@@ -12,32 +18,27 @@ class AuthController
 
             $admin = Admin::authenticate($username, $password);
             if ($admin) {
-                session_start();
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['user'] = $admin['username'];
                 $_SESSION['role'] = 'admin';
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=adminDashboard");
                 exit;
             }
-            else{
-                $error= "Sai tài khoản hoặc mật khẩu!";
-            }
-           
 
             $user = User::authenticate($username, $password);
             if ($user) {
-                session_start();
-                $_SESSION['fullname'] = $user['fullname'];
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['user'] = $user['username'];
+                $_SESSION['fullname'] = $user['fullname'];
                 $_SESSION['role'] = 'user';
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=userDashboard");
                 exit;
             }
-            else{
-                $error= "Sai tài khoản hoặc mật khẩu!";
-            }
-           
 
-            // Sai tài khoản hoặc mật khẩu
             $error = "Sai tài khoản hoặc mật khẩu!";
             include 'app/views/login/login.php';
         } else {
@@ -68,19 +69,17 @@ class AuthController
         }
         include 'app/views/login/user_dashboard.php';
     }
+
     public function logout()
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Hủy session
         session_unset();
         session_destroy();
 
-        // Chuyển hướng về trang đăng nhập
         header("Location: /du_an/8XBET/index.php?controller=auth&action=login");
         exit;
     }
 }
-?>

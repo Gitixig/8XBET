@@ -5,9 +5,7 @@ class App
     public function init()
     {
         $url = $_GET['url'];
-        $urlarry = explode('/', $url); //explode de in no ra
-        // var_dump(($urlarry));
-        // die;
+        $urlarry = explode('/', $url); 
         $controller = $urlarry[0] . 'controller';
         require_once __DIR__ . '/../app/controllers/' . $urlarry[0] . 'controller.php';
         $controller = new $controller();

@@ -1,3 +1,13 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$username = $_SESSION['user'] ?? null;
+$role = $_SESSION['role'] ?? null;
+?>
+<?php
+require_once __DIR__ . '/../../../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -54,7 +64,7 @@
             </button>
 
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../../../public/img/img-logo/ChatGPT Image 14_46_48 12 thg 4, 2025.png" style="width: 70px;" alt="Logo">
+                <img src="/du_an/8XBET/public/img/img-logo/logo.png" style="width: 70px;" alt="Logo">
             </a>
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav text-center">
