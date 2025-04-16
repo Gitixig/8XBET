@@ -32,7 +32,18 @@ include __DIR__ . '/../layout/header.php';
     .admin-dashboard {
         margin-top: 50px;
         text-align: center;
+        /* Căn giữa nội dung văn bản */
         color: white;
+        display: flex;
+        /* Sử dụng flexbox */
+        flex-direction: column;
+        /* Sắp xếp các phần tử theo cột */
+        justify-content: center;
+        /* Căn giữa theo chiều dọc */
+        align-items: center;
+        /* Căn giữa theo chiều ngang */
+        height: 100vh;
+        /* Chiều cao toàn màn hình */
     }
 
     .admin-dashboard h2 {

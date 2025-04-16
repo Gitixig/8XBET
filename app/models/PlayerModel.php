@@ -4,7 +4,6 @@ require_once __DIR__ . '/../../config/config.php';
 
 class PlayerModel
 {
-    // Hàm lưu cầu thủ vào cơ sở dữ liệu
     public static function create($name, $dob, $country, $height, $price, $position, $photoPath)
     {
         $dbConfig = include __DIR__ . '/../../config/config.php';

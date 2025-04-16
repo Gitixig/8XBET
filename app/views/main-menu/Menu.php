@@ -69,7 +69,7 @@ require_once __DIR__ . '/../../../config/config.php';
                 <ul class="navbar-nav text-center">
                     <li class="nav-item"><a class="nav-link text-white active" href="/du_an/8XBET/app/views/Home/Home.php"><b>HOME</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white active" href="#"><b>TTCN</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>CẦU THỦ</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
