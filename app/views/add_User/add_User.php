@@ -1,5 +1,16 @@
-<?php include __DIR__ . '/../layout/header.php'; ?>
-
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+<style>
+     body {
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-image: url('/du_an/8XBET/public/img/sanbong_login.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+<body>
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4" style="width: 30rem;">
         <h4 class="mb-4 text-center">Đăng ký tài khoản</h4>
@@ -20,5 +31,4 @@
         </form>
     </div>
 </div>
-
-<?php include __DIR__ . '/../layout/footer.php'; ?>
+</body>
