@@ -80,6 +80,12 @@
                         </ul>
                     </li>
                 <?php }?>
+                <?php if(isset($_SESSION['role'])==="admin"){?>
+                    <li class="nav-item"><a class="nav-link text-white" href="/du_an/8XBET/app/views/List_player/list_player.php"><b>Add player</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add CLB</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add stadium</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add HLV</b></a></li>
+                    <?php }?>
             </ul>
             </div>
             <a class="nav-link text-white me-3 d-flex align-items-center" href="../main-menu/Search.php">
