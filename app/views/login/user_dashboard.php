@@ -60,9 +60,10 @@ include __DIR__ . '/../main-menu/Menu.php';
                 <button type="submit" class="menueff menueff-button">Đăng xuất</button>
             </form>
         </div>
-        <?php include __DIR__ . '/../layout/footer.php'; ?>
+    </div>    
+        
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+</html><?php include __DIR__ . '/../layout/footer.php'; ?>
