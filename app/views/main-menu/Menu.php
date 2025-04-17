@@ -62,7 +62,7 @@ require_once __DIR__ . '/../../../config/config.php';
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list fs-2"></i>
             </button>
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="/../du_an/8XBET/app/views/product/Home.php">
                 <img src="/du_an/8XBET/public/img/img-logo/logo.png" style="width: 70px;" alt="Logo">
             </a>
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">

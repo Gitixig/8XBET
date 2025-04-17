@@ -29,8 +29,9 @@ class PlayerController
 
             PlayerModel::create($name, $dob, $country, $height, $price, $position, $photoPath);
 
-            header("Location: /du_an/8XBET/index.php?controller=player&action=index");
-            exit;
+            // header("Location: /du_an/8XBET/index.php?controller=player&action=list_player");
+            // exit;
         }
     }
+    
 }

@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$role = $_SESSION['role'] ?? null; 
+$role = $_SESSION['role'] ?? null;
 ?>
 
 <?php include __DIR__ . '/../main-menu/Menu.php'; ?>
@@ -133,7 +133,7 @@ $role = $_SESSION['role'] ?? null;
             <?php if (!empty($error)) { ?>
                 <p style="color:red;"><?php echo $error; ?></p>
             <?php } ?>
-            <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px;">Bạn chưa có tài khoản? Đăng ký nhé!</a>
+            <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px; color: black"><b>Bạn chưa có tài khoản? Đăng ký nhé!</b></a>
         </div>
     </form>
 </body>

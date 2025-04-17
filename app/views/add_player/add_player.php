@@ -144,5 +144,3 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
         });
     </script>
 </body>
-
-<?php include '../layout/footer.php'; ?>

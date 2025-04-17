@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 $username = $_SESSION['user'] ?? null;
 $role = $_SESSION['role'] ?? null;
 
-// Include file cấu hình để sử dụng BASE_URL
 require_once __DIR__ . '/../../../config/config.php';
 ?>
 <!doctype html>
@@ -65,9 +64,9 @@ require_once __DIR__ . '/../../../config/config.php';
                         <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=club&action=list">Danh sách câu lạc bộ</a></li>
                     <?php endif; ?>
                     <?php if ($username): ?>
-                        <li class="nav-item"><a class="nav-link" href="/index.php?controller=auth&action=logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/du_an/8XBET/index.php?controller=auth&action=logout">Logout</a></li>
                     <?php else: ?>
-                        <li class="nav-item"><a class="nav-link" href="/index.php?controller=auth&action=login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/du_an/8XBET/index.php?controller=auth&action=login">Login</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
