@@ -85,22 +85,21 @@ if (!$conn) {
 }
 
 
-$productlist = mysqli_query($conn, 'SELECT * FROM players');
+$productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
 ?>
 
 <body>
-    <h2 style="text-align: center;">Danh Sách Cầu Thủ</h2>
+    <h2 style="text-align: center;">Danh Sách Sân Vận Động</h2>
     <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
 
         <div class="row row-custom">
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
-                        <img src="<?= $item['avatar'] ?>" alt="Ảnh cầu thủ">
+                        <img src="<?= $item['image'] ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
                             <h4><?= $item['name'] ?></h4>
-                            <p>Ngày sinh: <?= $item['dob'] ?></p>
-                            <p>Chiều cao: <?= $item['height'] ?> cm</p>
+                            <p>Sức chứa: <?= $item['capacity'] ?></p>
                             <p>Quốc gia:
                                 <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
                                     style="height: 35px; width: 45px; margin-left: 20px;">

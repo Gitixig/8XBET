@@ -60,7 +60,7 @@ require_once __DIR__ . '/../../../config/config.php';
                     <?php if ($role === 'admin'): ?>
                         <li class="nav-item"><a class="nav-link text-warning" href="/../du_an/8XBET/app/views/add_player/add_player.php">Thêm cầu thủ</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=user&action=list">Danh sách người dùng</a></li>
-                        <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=club&action=add">Thêm câu lạc bộ</a></li>
+                        <li class="nav-item"><a class="nav-link text-warning" href="/../du_an/8XBET/app/views/add_stadium/add_stadium.php">Thêm câu lạc bộ</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=club&action=list">Danh sách câu lạc bộ</a></li>
                     <?php endif; ?>
                     <?php if ($username): ?>
