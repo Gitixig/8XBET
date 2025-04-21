@@ -72,7 +72,7 @@ require_once __DIR__ . '/../../../config/config.php';
                     <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/Stadiums/Stadium.php"><b>SÂN VẬN ĐỘNG</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/coach/coach.php"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
                     <?php if (!isset($_SESSION['user'])) { ?>
                         <li class="nav-item dropdown">
@@ -89,11 +89,11 @@ require_once __DIR__ . '/../../../config/config.php';
                             </ul>
                         </li>
                     <?php } ?>
-                    <?php if (isset($_SESSION['role']) === "admin") { ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="/du_an/8XBET/app/views/List_player/list_player.php"><b>Add player</b></a></li>
+                    <?php if  ($role === 'admin') { ?>
+                        <li class="nav-item"><a class="nav-link text-white" href="/du_an/8XBET/app/views/add_player/add_player.php"><b>Add player</b></a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add CLB</b></a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add stadium</b></a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add HLV</b></a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/add_stadium/add_stadium.php"><b>Add stadium</b></a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/add_coach/add_coach.php"><b>Add HLV</b></a></li>
                     <?php } ?>
                 </ul>
             </div>

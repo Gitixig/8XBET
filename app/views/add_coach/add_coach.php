@@ -70,8 +70,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
 
 <body>
     <div class="container container-custom" style="margin-top: 30px; margin-bottom: 30px;">
-        <h2 style="text-align: center;">Thêm Cầu Thủ Mới</h2>
-        <form action="/du_an/8XBET/index.php?controller=player&action=store" method="POST" enctype="multipart/form-data">
+        <h2 style="text-align: center;">Thêm HLV</h2>
+        <form action="/du_an/8XBET/index.php?controller=coach&action=store" method="POST" enctype="multipart/form-data">
             <div class="avatar-preview">
                 <label for="avatar-upload">
                     <img id="avatar-preview" src="/du_an/8XBET/public/img/default-avatar.png" alt="Ảnh đại diện">
@@ -81,7 +81,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
 
             <div class="form-group">
                 <label for="name">Họ Tên</label>
-                <input type="text" id="name" name="name" placeholder="Nhập tên cầu thủ" required>
+                <input type="text" id="name" name="name" placeholder="Nhập tên HLV" required>
             </div>
 
             <div class="form-group">
@@ -96,24 +96,22 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
             </div>
 
             <div class="form-group">
-                <label for="height">Chiều Cao (cm)</label>
-                <input type="number" id="height" name="height" placeholder="Nhập chiều cao (cm)" required>
+                <label for="formation">Sơ đồ</label>
+                <input type="number" id="formation" name="formation" placeholder="Sơ đồ" required>
             </div>
+
+            <div class="form-group">
+                <label for="Play_style">Phong cách chơi</label>
+                <input type="text" id="play_style" name="play_style" placeholder="Phong cách chơi" required>
+            </div>
+
 
             <div class="form-group">
                 <label for="price">Giá bán</label>
                 <input type="text" id="price" name="price" placeholder="Nhập giá bán" required>
             </div>
 
-            <div class="form-group">
-                <label for="position">Vị Trí</label>
-                <select id="position" name="position" required>
-                    <option value="Tiền đạo">Tiền đạo</option>
-                    <option value="Tiền vệ">Tiền vệ</option>
-                    <option value="Hậu vệ">Hậu vệ</option>
-                    <option value="Thủ môn">Thủ môn</option>
-                </select>
-            </div>
+           
 
             <button type="submit">Lưu Thông Tin</button>
         </form>

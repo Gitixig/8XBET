@@ -1,7 +1,7 @@
 <!-- filepath: c:\xampp\htdocs\du_an\8XBET\app\views\player\add_player.php -->
 <?php session_start(); ?>
 
-<?php include '../layout/header.php'; ?>
+<?php include '../main-menu/Menu.php'; ?>
 
 <?php
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
