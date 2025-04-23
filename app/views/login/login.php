@@ -2,10 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$config = include __DIR__ . '/../../../config/config.php';
+$base_url = $config['base_url'];
 $role = $_SESSION['role'] ?? null;
-?>
-
-<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+include __DIR__ . '/../main-menu/Menu.php'; ?>
 
 <style>
     body {
@@ -122,7 +122,7 @@ $role = $_SESSION['role'] ?? null;
 </style>
 
 <body>
-    <form action="/du_an/8XBET/index.php?controller=auth&action=login" method="POST">
+    <form action="<?php echo $base_url; ?>/index.php?controller=auth&action=login" method="POST">
         <div class="menueff menueff-card">
             <h1>Login</h1>
             <label for="username"></label>

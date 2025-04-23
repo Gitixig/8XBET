@@ -1,7 +1,7 @@
 <?php
-session_start();
-
-// Include file cấu hình
+require_once "app/controllers/AuthController.php";
+require_once "app/controllers/playerController.php";
+require_once "app/controllers/UserController.php";
 require_once __DIR__ . '/config/config.php';
 
 spl_autoload_register(function ($class) {

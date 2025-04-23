@@ -9,6 +9,8 @@ return array(
      */
 
     'base' => '/du_an/8XBET',
+    'base_url' => 'http://localhost/du_an/8XBET',
+    'public' => '/du_an/8XBET/public/',
     'db' => array(
         'host'     => 'localhost',
         'name'     => '8xbet',
