@@ -1,7 +1,7 @@
 <footer style="background-color: #B22222; color: #eee; padding: 40px 0; text-align: center; font-family: sans-serif;">
     <h2 style="margin-bottom: 10px; font-size: 30px;">8XBET.com</h2>
     <p style="font-size: 20px;">Thành lập năm 2025 </p>
-    <p style="font-size: 20px;">"Đây là sân chơi cảm xúc – nơi tiền chỉ có lượt đi !"</p>
+    <p style="font-size: 20px;">"Đây là sân bóng cảm xúc – nơi tiền chỉ có lượt đi !"</p>
     <div style="margin: 20px 0; font-size: 30px;">
         <a href="/players" style="color: #eee; margin: 0 10px;">Cầu thủ</a>
         <a href="/coaches" style="color: #eee; margin: 0 10px;">HLV</a>

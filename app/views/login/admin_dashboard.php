@@ -4,9 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: /du_an/8XBET/app/views/login/login.php");
+    
     exit();
 }
-include __DIR__ . '/../main-menu/Menu.php';
+include __DIR__ . '/../layout/header.php';
 ?>
 
 <!DOCTYPE html>

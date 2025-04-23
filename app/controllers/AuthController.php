@@ -35,7 +35,7 @@ class AuthController
                 $_SESSION['user'] = $user['username'];
                 $_SESSION['fullname'] = $user['fullname'];
                 $_SESSION['role'] = 'user';
-                header("Location: /du_an/8XBET/index.php?controller=auth&action=userDashboard");
+                header("Location: /du_an/8XBET/index.php?controller=product&action=home");
                 exit;
             }
 
