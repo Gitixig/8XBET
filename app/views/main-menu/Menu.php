@@ -88,17 +88,14 @@ $base_url = $config['base_url'];
             <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="bi bi-list fs-2"></i>
             </button>
-            <a class="navbar-brand d-flex align-items-center" href="/../du_an/8XBET/app/views/product/Home.php">
-                <img src="/du_an/8XBET/public/img/img-logo/logo.png" style="width: 70px;" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item"><a class="nav-link text-white active" href="/du_an/8XBET/app/views/Home/Home.php"><b>HOME</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white active" href="#"><b>TTCN</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Home/Home.php"><b>HOME</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>TTCN</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/Stadiums/Stadium.php"><b>SÂN VẬN ĐỘNG</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/../du_an/8XBET/app/views/coach/coach.php"><b>HLV</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
                     <?php if ($role === 'admin') : ?>
                         <li class="nav-item dropdown">
@@ -112,13 +109,7 @@ $base_url = $config['base_url'];
                                 <li><a class="dropdown-item text-white" href="#">Thêm HLV</a></li>
                             </ul>
                         </li>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['role']) === "admin") { ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="/du_an/8XBET/app/views/List_player/list_player.php"><b>Add player</b></a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add CLB</b></a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add stadium</b></a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><b>Add HLV</b></a></li>
-                    <?php } ?>
+                    <?php endif; ?>
                 </ul>
 
                 <div class="d-flex align-items-center">
