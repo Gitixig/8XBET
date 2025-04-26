@@ -39,4 +39,10 @@ class CoachController
         $coach= $coachModel->getAll();
         include __DIR__ . '/../views/coach/coach.php';
     }
+    public function coach_admin()
+    {
+        $coachModel = new CoachModel();
+        $coach = $coachModel->getAll();
+        include __DIR__ . '/../views/coach/coach_admin.php';
+    }
 }

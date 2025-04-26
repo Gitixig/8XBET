@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+<?php include __DIR__ . '/../layout/header.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -85,27 +85,28 @@ if (!$conn) {
 }
 
 
-$productlist = mysqli_query($conn, 'SELECT * FROM players');
+$productlist = mysqli_query($conn, 'SELECT * FROM coaches');
 ?>
 
 <body>
-    <h2 style="text-align: center;">Danh Sách Cầu Thủ</h2>
+    <h2 style="text-align: center;">Danh Sách HLV</h2>
     <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
 
         <div class="row row-custom">
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
-                        <img src="<?= $item['photo'] ?>" alt="Ảnh cầu thủ">
+                        <img src="<?= $item['avatar'] ?>" alt="Ảnh HLV">
                         <div class="product-info">
                             <h4><?= $item['name'] ?></h4>
                             <p>Ngày sinh: <?= $item['dob'] ?></p>
-                            <p>Chiều cao: <?= $item['height'] ?> cm</p>
                             <p>Quốc gia:
                                 <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
                                     style="height: 35px; width: 45px; margin-left: 20px;">
                                 <?= $item['country'] ?>
                             </p>
+                            <p>Sơ đồ: <?= $item['formation'] ?></p>
+                            <p>Phong cách chơi: <?= $item['play_style'] ?></p>
                             <p>Giá : <?= $item['price'] ?></p>
                         </div>
                         <div class="product-action">
@@ -119,7 +120,4 @@ $productlist = mysqli_query($conn, 'SELECT * FROM players');
     </div>
 
 </body>
-
-<?php include '../layout/footer.php'; ?>
-
 </html>

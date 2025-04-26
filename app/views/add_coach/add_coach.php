@@ -1,7 +1,10 @@
-<!-- filepath: c:\xampp\htdocs\du_an\8XBET\app\views\player\add_player.php -->
-<?php session_start(); ?>
+<?php 
+    if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
-<?php include '../main-menu/Menu.php'; ?>
+<?php include __DIR__ . '/../layout/header.php'; ?>
 
 <?php
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
@@ -92,7 +95,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
             <div class="form-group">
                 <label for="country">Quốc Gia</label>
                 <img id="country-flag" src="">
-                <?php include '../layout/national/national.php'; ?>
+                <?php include(__DIR__ . '/../layout/national/national.php'); ?>
             </div>
 
             <div class="form-group">
@@ -111,7 +114,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
                 <input type="text" id="price" name="price" placeholder="Nhập giá bán" required>
             </div>
 
-           
+
 
             <button type="submit">Lưu Thông Tin</button>
         </form>

@@ -97,19 +97,6 @@ $base_url = $config['base_url'];
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
-                    <?php if ($role === 'admin') : ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
-                                <b>QUẢN TRỊ</b>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" style="background-color: #B22222;">
-                                <li><a class="dropdown-item text-white" href="<?= $base_url; ?>/app/views/List_player/list_player.php">Thêm Cầu Thủ</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Thêm CLB</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Thêm Sân</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Thêm HLV</a></li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
                 </ul>
 
                 <div class="d-flex align-items-center">

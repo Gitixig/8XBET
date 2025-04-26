@@ -23,7 +23,7 @@ class PlayerModel
         );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $pdo->prepare("INSERT INTO players (name, dob, country, height, price, position, avatar) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO players (name, dob, country, height, price, position, photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$name, $dob, $country, $height, $price, $position, $avatar]);
     }
 }

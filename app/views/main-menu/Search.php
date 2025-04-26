@@ -2,13 +2,15 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Mẫu</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet" />
+
     <style>
         body {
             background-color: #f8f8f8;
@@ -26,319 +28,186 @@
 
         .search-box {
             text-align: center;
-            margin: 20px;
-            border: none;
-            justify-content: center;
+            margin: 20px auto;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
         }
 
         .search-box input {
             width: 50%;
             height: 50px;
             padding: 10px;
-            font-size: 35px;
-            border: 5%;
-            color: white;
-            font-weight: 200;
-            background-color: #B22222;
-            outline: none;
-            font-family: 'Bebas Neue', Helvetica, sans-serif;
-        }
-
-        h1 {
-            min-width: 2px;
-            min-height: 2px;
-            background-color: white;
-        }
-
-        input::placeholder {
-            color: white;
-            height: 50px;
-            opacity: 0.6;
-            text-align: center;
-        }
-
-
-
-        .container {
-            display: flex;
-            align-items: center;
-        }
-
-        .container img {
-            width: 50px;
-            height: auto;
-            margin-right: 10px;
-        }
-
-        @media (max-width: 1400px) {
-            .search-box input {
-                font-size: 20px;
-                width: 80%;
-
-            }
-
-            .header {
-                padding: 15px;
-                font-size: 20px;
-            }
-        }
-
-        .box {
-            transition: transform 0.3s ease;
-        }
-
-        .box:hover {
-            transform: scale(1.1);
-        }
-
-        .box:hover p {
-            color: #B22222;
-        }
-
-
-
-
-        .search-box input {
-            width: 50%;
-            height: 50px;
-            padding: 10px;
-            font-size: 35px;
+            font-size: 28px;
             border: 2px solid transparent;
             color: white;
-            font-weight: 200;
             background-color: #B22222;
             outline: none;
             transition: all 0.3s ease-in-out;
             text-align: center;
+            font-family: 'Bebas Neue', Helvetica, sans-serif;
         }
-
 
         .search-box input:focus {
             border-color: white;
-            /* Viền sáng lên */
             box-shadow: 0px 0px 30px rgba(248, 248, 247, 0.8);
-            /* Phát sáng */
             border-radius: 10px;
-        }
-
-        /* Hiệu ứng placeholder động */
-        @keyframes typingEffect {
-            0% {
-                opacity: 0.2;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.2;
-            }
         }
 
         .search-box input::placeholder {
             color: white;
-            animation: 1.5s infinite;
-            /* Placeholder nhấp nháy */
+            opacity: 0.6;
         }
 
-        .box {
+        .card-news {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             padding: 10px;
-        }
-
-        .card {
-            text-overflow: ellipsis;
-            width: 420px;
-            overflow: hidden;
-            display: block;
-            white-space: nowrap;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
             font-family: 'Source Sans Pro', Helvetica, sans-serif;
+            transition: transform 0.3s ease;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 20px;
         }
 
-
-
-        p {
-            font-size: larger;
-            display: inline-block;
-            max-width: 280px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            text-align: center;
+        .card-news:hover {
+            transform: scale(1.02);
         }
 
-        .search-box {
-            font-family: 'Source Sans Pro', Helvetica, sans-serif;
+        .card-news img {
+            width: 100px;
+            height: 90px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+
+        .card-news p {
+            margin: 0;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .search-box input {
+                width: 90%;
+                font-size: 20px;
+            }
+
+            .card-news img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .card-news p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <div class="header">
         <div class="search-box">
             <h4>Hi There</h4>
-            <input type="text" placeholder="TÌM KIẾM CẦU THỦ,CÂU HỎI THƯỜNG GẶP...">
-            <h1></h1>
+            <input type="text" placeholder="TÌM KIẾM CẦU THỦ, CÂU HỎI THƯỜNG GẶP..." />
         </div>
     </div>
-    <h3 style="text-align: center; margin-top: 30px;">
-        <b>Có Thể Bạn Quan Tâm: </b>
-    </h3>
-    <div class="container">
+
+    <h3 class="text-center mt-4"><b>Có Thể Bạn Quan Tâm:</b></h3>
+
+    <div class="container mt-4">
         <div class="row">
-            <div class="col" style="max-width: 2500px;">
-                <div class="container">
-                    <div class="box1">
-                        <div style="padding-top: 50px; padding-left: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="../img-MU/Alejandro-Garnacho.png" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMwqedqeq</p>
-                                </a>
-                            </div>
-                        </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news1" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="../img-MU/Alejandro-Garnacho.png" alt="News Image" />
+                        <p>AMORIM NAMES SIDE TO FACE FULHAM</p>
                     </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news2" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>CẬP NHẬT MỚI VỀ TIN CHUYỂN NHƯỢNG</p>
                     </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news3" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>TIN HOT: HUẤN LUYỆN VIÊN BỊ TREO GIÒ</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col" style="max-width: 2500px;">
-                <div class="container">
-                    <div class="box1">
-                        <div style="padding-top: 50px; padding-left: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMwqedqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col" style="max-width: 2500px;">
-                <div class="container">
-                    <div class="box1">
-                        <div style="padding-top: 50px; padding-left: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMwqedqeq</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box1">
-                        <div style="padding: 10px;">
-                            <div class="box">
-                                <a href="https://example.com/news1" style="text-decoration: none;color: inherit;">
-                                    <div class="card" style=" height: 100px; display: flex; padding: 5px;">
-                                        <img src="img/ba_tríc.jpg" class="img-fluid rounded-start"
-                                            style="width:100px; height: 90px;">
-
-                                        <p>AMORIM NAMES SIDE TO FACE FULHAMqweqeq</p>
-
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news1" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="../img-MU/Alejandro-Garnacho.png" alt="News Image" />
+                        <p>AMORIM NAMES SIDE TO FACE FULHAM</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news2" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>CẬP NHẬT MỚI VỀ TIN CHUYỂN NHƯỢNG</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news3" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>TIN HOT: HUẤN LUYỆN VIÊN BỊ TREO GIÒ</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news1" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="../img-MU/Alejandro-Garnacho.png" alt="News Image" />
+                        <p>AMORIM NAMES SIDE TO FACE FULHAM</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news2" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>CẬP NHẬT MỚI VỀ TIN CHUYỂN NHƯỢNG</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="https://example.com/news3" style="text-decoration: none; color: inherit;">
+                    <div class="card-news">
+                        <img src="img/ba_tríc.jpg" alt="News Image" />
+                        <p>TIN HOT: HUẤN LUYỆN VIÊN BỊ TREO GIÒ</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
+</html>

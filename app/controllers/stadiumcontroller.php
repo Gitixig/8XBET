@@ -16,8 +16,6 @@ class StadiumController
             $capacity = $_POST['capacity'];
             $country = $_POST['country'];
             $price = $_POST['price'];
-
-
             $photo = $_FILES['avatar'];
             $photoPath = '/du_an/8XBET/public/uploads/' . basename($photo['name']);
             $uploadDir = __DIR__ . '/../../public/uploads/';
@@ -36,5 +34,12 @@ class StadiumController
         $stadiumModell=new StadiumModel();
         $stadium= $stadiumModell->getAll();
         include __DIR__ . '/../views/Stadiums/Stadium.php';
+    }
+
+    public function stadium_admin()
+    {
+        $stadiumModell = new StadiumModel();
+        $stadium = $stadiumModell->getAll();
+        include __DIR__ . '/../views/Stadiums/Stadium_admin.php';
     }
 }
