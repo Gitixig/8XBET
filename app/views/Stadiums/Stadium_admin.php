@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Cầu Thủ</title>
+    <title>Danh Sách Sân Vận Động</title>
     <style>
         .product-box {
             text-align: center;
@@ -69,6 +69,7 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: bold;
+            text-decoration: none;
         }
 
         .button:hover {
@@ -76,40 +77,46 @@
         }
     </style>
 </head>
+
 <?php
 $conn = mysqli_connect('localhost', 'root', '', '8xbet');
-
-
 if (!$conn) {
     die("Kết nối thất bại: " . mysqli_connect_error());
 }
-
-
 $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
 ?>
 
 <body>
     <h2 style="text-align: center;">Danh Sách Sân Vận Động</h2>
-    <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
 
+    <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="row row-custom">
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
                         <img src="<?= $item['image'] ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
-                            <h4><?= $item['name'] ?></h4>
-                            <p>Sức chứa: <?= $item['capacity'] ?></p>
+                            <h4><?= htmlspecialchars($item['name']) ?></h4>
+                            <p>Sức chứa: <?= htmlspecialchars($item['capacity']) ?></p>
                             <p>Quốc gia:
-                                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
-                                    style="height: 35px; width: 45px; margin-left: 20px;">
-                                <?= $item['country'] ?>
+                                <img id="country-flag" 
+                                     src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png" 
+                                     style="height: 35px; width: 45px; margin-left: 20px;">
+                                <?= htmlspecialchars($item['country']) ?>
                             </p>
-                            <p>Giá : <?= $item['price'] ?></p>
+                            <p>Giá: <?= htmlspecialchars($item['price']) ?></p>
                         </div>
                         <div class="product-action">
-                            <button class="button">Add to Cart</button>
-                            <button class="button">Buy</button>
+                            <a href="<?php echo $base_url; ?>/index.php?controller=stadium&action=edit_stadium&id=<?php echo $item['id']; ?>"
+                               class="button">
+                                Chỉnh sửa
+                            </a>
+
+                            <a href="<?php echo $base_url; ?>/index.php?controller=stadium&action=delete_stadium&id=<?php echo $item['id']; ?>"
+                               class="button"
+                               onclick="return confirm('Bạn có chắc chắn muốn xóa sân vận động này?');">
+                                Xóa
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -119,6 +126,6 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
 
 </body>
 
-<?php include '../layout/footer.php'; ?>
+<?php include __DIR__ . '/../layout/footer.php'; ?>
 
 </html>

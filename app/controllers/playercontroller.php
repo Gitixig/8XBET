@@ -38,4 +38,6 @@ class PlayerController
         $player= $playermodel->getAll();
         include __DIR__ . '/../views/list_player/list_player.php';
     }
+
+    
 }

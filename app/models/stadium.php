@@ -26,4 +26,43 @@ class StadiumModel
         $stmt = $pdo->prepare("INSERT INTO stadiums (name, capacity, country, price, image) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$name, $capacity, $country, $price, $image]);
     }
+
+
+    public function getStadiumByField($field, $value)
+    {
+        $allowedFields = ['id', 'name', 'capacity', 'country', 'price', 'image'];
+        if (!in_array($field, $allowedFields)) {
+            throw new InvalidArgumentException("Invalid field: $field");
+        }
+
+        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `image` FROM `stadiums` WHERE {$field} = ?");
+        $stmt->execute([$value]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public function updateStadium($id, $name, $capacity, $country, $price, $image)
+    {
+        $stmt = $this->db->prepare("UPDATE stadiums SET name = ?, capacity = ?, country = ?, price = ?, image = ? WHERE id = ?");
+        return $stmt->execute([$name, $capacity, $country, $price, $image, $id]);
+    }
+
+
+
+
+    public function getStadiumById($id)
+    {
+        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `image` FROM `stadiums` WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function deleteStadium($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM stadiums WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+
+    
 }

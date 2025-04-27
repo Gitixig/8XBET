@@ -3,7 +3,6 @@ require_once __DIR__ . '/../models/UserModel.php';
 
 class UserController
 {
-    // Thêm người dùng
     public function addUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,7 +31,6 @@ class UserController
         }
     }
 
-    // Hiển thị thông tin người dùng
     public function userDashboard()
     {
         if (session_status() === PHP_SESSION_NONE) {

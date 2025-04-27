@@ -7,9 +7,61 @@ if (session_status() == PHP_SESSION_NONE) {
 <?php include __DIR__ . '/../layout/header.php'; ?>
 
 <?php
+// Kiểm tra quyền admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
     header("Location: /du_an/8XBET/index.php?controller=auth&action=login");
     exit();
+}
+
+// Lấy thông tin sân vận động cần sửa
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    die('ID sân vận động không hợp lệ.');
+}
+
+// Kết nối DB
+$conn = mysqli_connect('localhost', 'root', '', '8xbet');
+if (!$conn) {
+    die('Kết nối thất bại: ' . mysqli_connect_error());
+}
+
+// Lấy dữ liệu sân vận động
+$query = "SELECT * FROM stadiums WHERE id = ?";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, 'i', $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$stadium = mysqli_fetch_assoc($result);
+
+if (!$stadium) {
+    die('Không tìm thấy sân vận động.');
+}
+
+// Xử lý cập nhật nếu submit form
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $capacity = $_POST['capacity'] ?? '';
+    $country = $_POST['country'] ?? '';
+    $price = $_POST['price'] ?? '';
+
+    // Xử lý ảnh mới (nếu có upload ảnh)
+    $image = $stadium['image']; // Mặc định giữ ảnh cũ
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $imagePath = '/du_an/8XBET/public/uploads/' . basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $imagePath);
+        $image = $imagePath;
+    }
+
+    // Update DB
+    $updateQuery = "UPDATE stadiums SET name=?, capacity=?, country=?, price=?, image=? WHERE id=?";
+    $updateStmt = mysqli_prepare($conn, $updateQuery);
+    mysqli_stmt_bind_param($updateStmt, 'sisdsi', $name, $capacity, $country, $price, $image, $id);
+    if (mysqli_stmt_execute($updateStmt)) {
+        header("Location: /du_an/8XBET/index.php?controller=stadium&action=index");
+        exit();
+    } else {
+        echo "Cập nhật thất bại.";
+    }
 }
 ?>
 
@@ -73,36 +125,35 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
 
 <body>
     <div class="container container-custom" style="margin-top: 30px; margin-bottom: 30px;">
-        <h2 style="text-align: center;">Thêm Sân Vận Động</h2>
-        <form action="/du_an/8XBET/index.php?controller=stadium&action=store" method="POST" enctype="multipart/form-data">
+        <h2 style="text-align: center;">Chỉnh Sửa Sân Vận Động</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="avatar-preview">
                 <label for="avatar-upload">
-                    <img id="image" src="/du_an/8XBET/public/img/default-avatar.png" alt="Ảnh đại diện">
+                    <img id="avatar-preview" src="<?= htmlspecialchars($stadium['image']) ?>" alt="Ảnh sân vận động">
                 </label>
-                <input type="file" name="avatar" id="avatar-upload" accept="image/*">
+                <input type="file" name="image" id="avatar-upload" accept="image/*">
             </div>
 
             <div class="form-group">
                 <label for="name">Tên sân vận động</label>
-                <input type="text" id="name" name="name" placeholder="Nhập tên sân vận động" required>
+                <input type="text" id="name" name="name" value="<?= htmlspecialchars($stadium['name']) ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="capacity">Sức chứa</label>
-                <input type="number" id="capacity" name="capacity" required>
+                <input type="number" id="capacity" name="capacity" value="<?= htmlspecialchars($stadium['capacity']) ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="country">Quốc Gia</label>
-                <img id="country-flag" src="">
+                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $stadium['country'])) ?>.png" style="height: 35px; width: 45px;">
                 <?php include(__DIR__ . '/../layout/national/national.php'); ?>
             </div>
 
-
-
             <div class="form-group">
                 <label for="price">Giá bán</label>
-                <input type="text" id="price" name="price" placeholder="Nhập giá bán" required>
+                <input type="text" id="price" name="price" value="<?= htmlspecialchars($stadium['price']) ?>" required>
             </div>
 
             <button type="submit">Lưu Thông Tin</button>
@@ -127,7 +178,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
             var flagImg = document.getElementById('country-flag');
             if (flagUrl) {
                 flagImg.src = flagUrl;
-                flagImg.style.display = "block";
+                flagImg.style.display = "inline";
             } else {
                 flagImg.style.display = "none";
             }
