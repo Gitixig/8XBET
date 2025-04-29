@@ -94,8 +94,8 @@ $base_url = $config['base_url'];
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TTCN</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Stadiums/Stadium.php"><b>SÂN VẬN ĐỘNG</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Coach/coach.php"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
                 </ul>
 
