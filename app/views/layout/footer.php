@@ -1,20 +1,42 @@
-<footer style="background-color: #B22222; color: #eee; padding: 40px 0; text-align: center; font-family: sans-serif;">
-    <h2 style="margin-bottom: 10px; font-size: 30px;">8XBET.com</h2>
-    <p style="font-size: 20px;">Thành lập năm 2025 </p>
-    <p style="font-size: 20px;">"Đây là sân bóng cảm xúc – nơi tiền chỉ có lượt đi !"</p>
-    <div style="margin: 20px 0; font-size: 30px;">
-        <a href="/players" style="color: #eee; margin: 0 10px;">Cầu thủ</a>
-        <a href="/coaches" style="color: #eee; margin: 0 10px;">HLV</a>
-        <a href="/stadiums" style="color: #eee; margin: 0 10px;">Sân vận động</a>
-        <a href="/schedule" style="color: #eee; margin: 0 10px;">Lịch thi đấu</a>
-        <a href="/news" style="color: #eee; margin: 0 10px;">Tin tức</a>
+<footer style="background-color: #222; color: #fff; padding: 20px 0; font-family: Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+    <!-- Phần chứa biểu tượng mạng xã hội -->
+    <div style="display: flex; align-items: center;">
+      <a href="https://www.youtube.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-youtube-icon.png" alt="YouTube" style="width: 24px;">
+      </a>
+      <a href="https://www.facebook.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-facebook-icon.png" alt="Facebook" style="width: 24px;">
+      </a>
+      <a href="https://twitter.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-x-icon.png" alt="X" style="width: 24px;">
+      </a>
+      <a href="https://www.instagram.com" target="_blank" style="margin-right: 15px;">
+        <!-- Instagram được làm nổi bật với viền đỏ -->
+        <img src="path-to-instagram-icon.png" alt="Instagram" style="width: 24px; border: 2px solid red; border-radius: 50%;">
+      </a>
+      <a href="https://www.tiktok.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-tiktok-icon.png" alt="TikTok" style="width: 24px;">
+      </a>
+      <a href="https://www.whatsapp.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-whatsapp-icon.png" alt="WhatsApp" style="width: 24px;">
+      </a>
+      <a href="https://www.snapchat.com" target="_blank" style="margin-right: 15px;">
+        <img src="path-to-snapchat-icon.png" alt="Snapchat" style="width: 24px;">
+      </a>
+      <a href="#" target="_blank">
+        <img src="path-to-generic-icon.png" alt="Link" style="width: 24px;">
+      </a>
     </div>
 
-    <div style="margin: 0px 0; font-size: 50px;">
-        <a href="#"><img src="../layout/footer_logo/fb.png" alt="Facebook" width="24" /></a>
-        <a href="#"><img src="../layout/footer_logo/Youtube_logo.png" alt="YouTube" width="24" /></a>
-        <a href="#"><img src="../layout/footer_logo/inta.png" alt="Instagram" width="24" /></a>
+    <!-- Phần chứa nút Đăng nhập và Đăng ký -->
+    <div>
+      <button style="background-color: #444; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; margin-right: 10px; cursor: pointer;">
+        LOG IN
+      </button>
+      <button style="background-color: #f00; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        SIGN UP
+      </button>
     </div>
-
-    <p style="margin-top: 20px; font-size: 20px;">© 2025 8XBET. All rights reserved.</p>
+  </div>
 </footer>

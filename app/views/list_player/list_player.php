@@ -109,7 +109,10 @@ $productlist = mysqli_query($conn, 'SELECT * FROM players');
                             <p>Giá : <?= $item['price'] ?></p>
                         </div>
                         <div class="product-action">
-                            <button class="button">Add to Cart</button>
+                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                                <input type="hidden" name="product_id" value="<?= $product['Id'] ?>">
+                                <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
+                            </form>
                             <button class="button">Buy</button>
                         </div>
                     </div>

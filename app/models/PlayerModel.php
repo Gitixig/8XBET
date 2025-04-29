@@ -1,7 +1,5 @@
 <?php
-
-require_once __DIR__ . '/../../config/config.php';
-
+$config = include __DIR__ . '../../../config.php';
 class PlayerModel
 {   private $db;
     public function __construct() {

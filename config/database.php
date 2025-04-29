@@ -6,7 +6,7 @@ class Database
     public static function connect()
     {
         if (self::$instance === null) {
-            $config = require __DIR__ . '/config.php';
+            $config = require __DIR__ . '/../config.php';
             $db = $config['db'];
 
             try {

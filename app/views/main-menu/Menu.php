@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $username = $_SESSION['user'] ?? null;
 $role = $_SESSION['role'] ?? null;
 
-$config = include __DIR__ . '/../../../config/config.php';
+$config = include __DIR__ . '../../../../config.php';
 $base_url = $config['base_url'];
 ?>
 <!DOCTYPE html>
@@ -104,12 +104,16 @@ $base_url = $config['base_url'];
                         <i class="bi bi-search fs-5"></i> <b>Search</b>
                     </a>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <a class="btn btn-outline-light me-2 position-relative" href="<?= $base_url; ?>/cart">
-                            <i class="bi bi-cart-fill"></i> Cart
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                                <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
-                            </span>
-                        </a>
+                        <form method="post" action="/../du_an/8XBET/app/views/cart/index.php"
+                            class="d-flex">
+                            <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">
+                                    <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
+                                </span>
+                            </button>
+                        </form>
                         <div class="user">
                             <a class="btn btn-light" href="<?= $base_url; ?>/app/views/login/user_dashboard.php" role="button">
                                 <i class="bi-emoji-sunglasses me-1"></i> <?= htmlspecialchars($_SESSION['user']) ?>
