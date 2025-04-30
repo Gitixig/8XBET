@@ -13,7 +13,7 @@ class PlayerModel
 
     public static function create($name, $dob, $country, $height, $price, $position, $avatar)
     {
-        $dbConfig = include __DIR__ . '/../../config/config.php';
+        $dbConfig = include __DIR__ . '/../../config.php';
         $pdo = new PDO(
             "mysql:host={$dbConfig['db']['host']};dbname={$dbConfig['db']['name']}",
             $dbConfig['db']['username'],

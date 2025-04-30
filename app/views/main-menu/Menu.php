@@ -104,7 +104,7 @@ $base_url = $config['base_url'];
                         <i class="bi bi-search fs-5"></i> <b>Search</b>
                     </a>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <form method="post" action="/../du_an/8XBET/app/views/cart/index.php"
+                        <form method="POST" action="/../du_an/8XBET/app/views/carts/index.php"
                             class="d-flex">
                             <button class="btn btn-outline-dark" type="submit">
                                 <i class="bi-cart-fill me-1"></i>

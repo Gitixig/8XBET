@@ -10,16 +10,17 @@ class CartController
      */
     public function index()
     {
-        // Đường dẫn tới ProductModel (sửa lại nếu bạn có thay đổi cấu trúc thư mục)
-        require_once __DIR__ . '/../../app/models/ProductModel.php';
+        // Sửa đường dẫn tới ProductModel cho khớp với cấu trúc dự án của bạn
+        require_once __DIR__ . '/../../models/ProductModel.php';
         $productModel = new ProductModel();
 
         $cartItems = [];
 
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $item) {
+                // Lấy thông tin sản phẩm từ DB theo product_id
                 $product = $productModel->getProductById($item['product_id']);
-                // Kiểm tra nếu sản phẩm tồn tại trước khi gán số lượng
+                // Nếu tồn tại sản phẩm, gán số lượng từ session cho sản phẩm
                 if ($product) {
                     $product['quantity'] = $item['quantity'];
                     $cartItems[] = $product;
@@ -27,7 +28,7 @@ class CartController
             }
         }
 
-        // Bao gồm view giỏ hàng (đảm bảo đường dẫn đúng với cấu trúc dự án của bạn)
+        // Bao gồm view giỏ hàng với đường dẫn đúng
         include __DIR__ . '/../Views/carts/index.php';
     }
 
@@ -43,26 +44,39 @@ class CartController
             if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
-    
-            // Tăng số lượng nếu sản phẩm đã có, nếu chưa có thì thêm mới
+
+            // Nếu sản phẩm đã có trong giỏ hàng thì tăng số lượng lên 1
             if (isset($_SESSION['cart'][$productId])) {
                 $_SESSION['cart'][$productId]['quantity']++;
             } else {
-                $_SESSION['cart'][$productId] = [
-                    'product_id' => $productId,
-                    'quantity'   => 1
-                ];
+                // Sửa đường dẫn tới ProductModel cho khớp với cấu trúc dự án của bạn
+                require_once __DIR__ . '/../models/ProductModel.php';
+                $productModel = new ProductModel();
+                $product = $productModel->getProductById($productId);
+                if ($product) {
+                    $_SESSION['cart'][$productId] = [
+                        'product_id' => $productId,
+                        'name'       => $product['name'],   // Lấy tên sản phẩm từ DB
+                        'price'      => $product['price'],  // Lấy giá sản phẩm từ DB
+                        'quantity'   => 1
+                    ];
+                } else {
+                    // Nếu không tìm thấy sản phẩm, ta chỉ lưu product_id và quantity
+                    $_SESSION['cart'][$productId] = [
+                        'product_id' => $productId,
+                        'quantity'   => 1
+                    ];
+                }
             }
-    
-            // Nạp cấu hình
+
+            // Nạp cấu hình và lấy URL chuyển hướng
             $config = require_once __DIR__ . '/../../config.php';
             $baseURL = isset($config['baseURL']) ? $config['baseURL'] : '/';
-    
-            // Lấy URL chuyển hướng từ hidden input nếu có, nếu không sử dụng HTTP_REFERER hoặc fallback baseURL
+
+            // Lấy URL chuyển hướng từ hidden input nếu có, nếu không sử dụng HTTP_REFERER hoặc fallback baseURL.
             $redirectUrl = $_POST['redirect_url'] ?? $_SERVER['HTTP_REFERER'] ?? $baseURL;
             header('Location: ' . $redirectUrl);
             exit;
         }
     }
-    
 }

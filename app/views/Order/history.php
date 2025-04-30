@@ -1,5 +1,4 @@
-<?php include '../main-menu/Menu.php'; ?>
-
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
 <div class="container mt-5 mb-5">
     <h2 class="mb-4 text-center">📜 Lịch sử đơn hàng</h2>
 
@@ -18,9 +17,9 @@
             <tbody>
                 <?php foreach ($orders as $order): ?>
                     <tr>
-                        <td>#<?= $order['id'] ?></td>
+                        <td>#<?= htmlspecialchars($order['id']) ?></td>
                         <td><?= date('d/m/Y H:i', strtotime($order['order_date'])) ?></td>
-                        <td><?= $order['status'] ?></td>
+                        <td><?= htmlspecialchars($order['status']) ?></td>
                         <td><?= number_format($order['total_amount'], 0) ?> VNĐ</td>
                     </tr>
                 <?php endforeach; ?>
@@ -28,5 +27,4 @@
         </table>
     <?php endif; ?>
 </div>
-
-<?php include '../layout/footer.php'; ?>
+<?php include __DIR__ . '/../layout/footer.php'; ?>

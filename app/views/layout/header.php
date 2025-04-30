@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $username = $_SESSION['admin'] ?? null;
 $role = $_SESSION['role'] ?? null;
 
-$config = include __DIR__ . '/../../../config/config.php';
+$config = include __DIR__ . '/../../../config.php';
 $base_url = $config['base_url'];
 ?>
 <!doctype html>
