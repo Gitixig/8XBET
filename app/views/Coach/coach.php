@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Cầu Thủ</title>
+    <title>Danh Sách HLV</title>
     <style>
         .product-box {
             text-align: center;
@@ -79,11 +79,9 @@
 <?php
 $conn = mysqli_connect('localhost', 'root', '', '8xbet');
 
-
 if (!$conn) {
     die("Kết nối thất bại: " . mysqli_connect_error());
 }
-
 
 $productlist = mysqli_query($conn, 'SELECT * FROM coaches');
 ?>
@@ -106,11 +104,17 @@ $productlist = mysqli_query($conn, 'SELECT * FROM coaches');
                                 <?= $item['country'] ?>
                             </p>
                             <p>Sơ đồ: <?= $item['formation'] ?></p>
-                            <p>Phong cách chơi: <?= $item['play_style']?></p>
+                            <p>Phong cách chơi: <?= $item['play_style'] ?></p>
                             <p>Giá : <?= $item['price'] ?></p>
                         </div>
                         <div class="product-action">
-                            <button class="button">Add to Cart</button>
+                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                                <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                <input type="hidden" name="item_type" value="coach">
+                                <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+                                <button type="submit" class="button">Add to Cart</button>
+                            </form>
+
                             <button class="button">Buy</button>
                         </div>
                     </div>

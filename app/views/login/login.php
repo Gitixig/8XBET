@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$config = include __DIR__ . '/../../../config/config.php';
+$config = include __DIR__ . '../../../../config.php';
 $base_url = $config['base_url'];
 $role = $_SESSION['role'] ?? null;
 include __DIR__ . '/../main-menu/Menu.php'; ?>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Cầu Thủ</title>
+    <title>Danh Sách Sân Vận Động</title>
     <style>
         .product-box {
             text-align: center;
@@ -79,11 +79,9 @@
 <?php
 $conn = mysqli_connect('localhost', 'root', '', '8xbet');
 
-
 if (!$conn) {
     die("Kết nối thất bại: " . mysqli_connect_error());
 }
-
 
 $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
 ?>
@@ -96,19 +94,25 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
-                        <img src="<?= $item['image'] ?>" alt="Ảnh Sân Vận Động">
+                        <img src="<?= htmlspecialchars($item['image']) ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
-                            <h4><?= $item['name'] ?></h4>
-                            <p>Sức chứa: <?= $item['capacity'] ?></p>
+                            <h4><?= htmlspecialchars($item['name']) ?></h4>
+                            <p>Sức chứa: <?= htmlspecialchars($item['capacity']) ?></p>
                             <p>Quốc gia:
-                                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
+                                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', htmlspecialchars($item['country']))) ?>.png"
                                     style="height: 35px; width: 45px; margin-left: 20px;">
-                                <?= $item['country'] ?>
+                                <?= htmlspecialchars($item['country']) ?>
                             </p>
-                            <p>Giá : <?= $item['price'] ?></p>
+                            <p>Giá : <?= number_format($item['price'], 0) ?> VNĐ</p>
                         </div>
                         <div class="product-action">
-                            <button class="button">Add to Cart</button>
+                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                                <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                <input type="hidden" name="item_type" value="stadium">
+                                <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+                                <button type="submit" class="button">Add to Cart</button>
+                            </form>
+
                             <button class="button">Buy</button>
                         </div>
                     </div>

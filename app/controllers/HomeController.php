@@ -1,6 +1,6 @@
 <?php
 
-class ProductController
+class HomeController
 {
     public function home()
     {

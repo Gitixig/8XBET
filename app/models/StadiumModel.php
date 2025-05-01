@@ -1,14 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config.php';
 
 class StadiumModel
-{   private $db;
-    public function __construct() {
-        $this->db=Database::connect();
+{
+    private $db;
+    public function __construct()
+    {
+        $this->db = Database::connect();
     }
-    public function getAll(){
-        $stmt=$this->db->prepare("SELECT * FROM stadiums ORDER BY id ASC");
+    public function getAll()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM stadiums ORDER BY id ASC");
         $stmt->execute();
         return $stmt->fetchAll((PDO::FETCH_ASSOC));
     }
@@ -63,6 +66,4 @@ class StadiumModel
         $stmt = $this->db->prepare("DELETE FROM stadiums WHERE id = ?");
         return $stmt->execute([$id]);
     }
-
-    
 }

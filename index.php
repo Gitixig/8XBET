@@ -2,7 +2,7 @@
 require_once "app/controllers/AuthController.php";
 require_once "app/controllers/playerController.php";
 require_once "app/controllers/UserController.php";
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/config.php';
 
 spl_autoload_register(function ($class) {
     foreach (['app/controllers/', 'app/models/', 'config/'] as $dir) {
