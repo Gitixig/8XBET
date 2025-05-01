@@ -10,6 +10,12 @@ class PlayerModel
         $stmt->execute();
         return $stmt->fetchAll((PDO::FETCH_ASSOC));
     }
+    public function getPlayerById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM players WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public static function create($name, $dob, $country, $height, $price, $position, $avatar)
     {

@@ -1,7 +1,13 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+require_once __DIR__ . '/../models/ProductModel.php';
+require_once __DIR__ . '/../models/CoachModel.php';
+require_once __DIR__ . '/../models/StadiumModel.php';
+require_once __DIR__ . '/../models/PlayerModel.php';
 
 class CartController
 {
@@ -10,73 +16,180 @@ class CartController
      */
     public function index()
     {
-        // Sửa đường dẫn tới ProductModel cho khớp với cấu trúc dự án của bạn
-        require_once __DIR__ . '/../../models/ProductModel.php';
         $productModel = new ProductModel();
+        $coachModel = new CoachModel();
+        $stadiumModel = new StadiumModel();
+        $playerModel = new PlayerModel();
 
         $cartItems = [];
 
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-            foreach ($_SESSION['cart'] as $item) {
-                // Lấy thông tin sản phẩm từ DB theo product_id
-                $product = $productModel->getProductById($item['product_id']);
-                // Nếu tồn tại sản phẩm, gán số lượng từ session cho sản phẩm
-                if ($product) {
-                    $product['quantity'] = $item['quantity'];
-                    $cartItems[] = $product;
+            foreach ($_SESSION['cart'] as $key => $item) {
+                if (!isset($item['type'], $item['id'], $item['quantity'])) {
+                    error_log("Dữ liệu giỏ hàng không hợp lệ: " . print_r($item, true));
+                    continue;
                 }
+
+                $itemType = $item['type'];
+                $itemId = $item['id'];
+                $quantity = $item['quantity'];
+                $product = null;
+
+                // Lấy thông tin sản phẩm dựa trên loại
+                if ($itemType === 'product') {
+                    $product = $productModel->getProductById($itemId);
+                } elseif ($itemType === 'coach') {
+                    $product = $coachModel->getCoachById($itemId);
+                } elseif ($itemType === 'stadium') {
+                    $product = $stadiumModel->getStadiumById($itemId);
+                } elseif ($itemType === 'player') {
+                    $product = $playerModel->getPlayerById($itemId);
+                }
+
+                if (!$product) {
+                    error_log("Không tìm thấy sản phẩm với ID: $itemId và loại: $itemType");
+                    continue;
+                }
+
+                $product['quantity'] = $quantity;
+                $cartItems[] = $product;
             }
         }
 
-        // Bao gồm view giỏ hàng với đường dẫn đúng
-        include __DIR__ . '/../Views/carts/index.php';
+        // Bao gồm view giỏ hàng
+        include __DIR__ . '/../views/carts/index.php';
     }
 
-    /**
-     * Xử lý thêm sản phẩm vào giỏ hàng
-     */
     public function add()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
-            $productId = $_POST['product_id'];
-    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'], $_POST['item_type'])) {
+            $itemId = intval($_POST['item_id']);
+            $itemType = htmlspecialchars($_POST['item_type']); // Loại bỏ ký tự đặc biệt để tránh lỗi bảo mật
+
             // Khởi tạo giỏ hàng nếu chưa có
             if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
 
-            // Nếu sản phẩm đã có trong giỏ hàng thì tăng số lượng lên 1
-            if (isset($_SESSION['cart'][$productId])) {
-                $_SESSION['cart'][$productId]['quantity']++;
+            // Tạo key duy nhất cho từng loại sản phẩm
+            $cartKey = $itemType . '_' . $itemId;
+
+            // Nếu sản phẩm đã có trong giỏ hàng thì tăng số lượng
+            if (isset($_SESSION['cart'][$cartKey])) {
+                $_SESSION['cart'][$cartKey]['quantity']++;
             } else {
-                // Sửa đường dẫn tới ProductModel cho khớp với cấu trúc dự án của bạn
-                require_once __DIR__ . '/../models/ProductModel.php';
-                $productModel = new ProductModel();
-                $product = $productModel->getProductById($productId);
-                if ($product) {
-                    $_SESSION['cart'][$productId] = [
-                        'product_id' => $productId,
-                        'name'       => $product['name'],   // Lấy tên sản phẩm từ DB
-                        'price'      => $product['price'],  // Lấy giá sản phẩm từ DB
-                        'quantity'   => 1
-                    ];
-                } else {
-                    // Nếu không tìm thấy sản phẩm, ta chỉ lưu product_id và quantity
-                    $_SESSION['cart'][$productId] = [
-                        'product_id' => $productId,
-                        'quantity'   => 1
-                    ];
-                }
+                // Thêm sản phẩm mới vào giỏ hàng
+                $_SESSION['cart'][$cartKey] = [
+                    'id'       => $itemId,
+                    'type'     => $itemType,
+                    'quantity' => 1
+                ];
             }
 
-            // Nạp cấu hình và lấy URL chuyển hướng
-            $config = require_once __DIR__ . '/../../config.php';
-            $baseURL = isset($config['baseURL']) ? $config['baseURL'] : '/';
-
-            // Lấy URL chuyển hướng từ hidden input nếu có, nếu không sử dụng HTTP_REFERER hoặc fallback baseURL.
-            $redirectUrl = $_POST['redirect_url'] ?? $_SERVER['HTTP_REFERER'] ?? $baseURL;
+            // Lấy URL chuyển hướng
+            $redirectUrl = $_POST['redirect_url'] ?? '/du_an/8XBET/index.php?controller=Cart&action=index';
             header('Location: ' . $redirectUrl);
+            exit;
+        } else {
+            error_log("Dữ liệu không hợp lệ khi thêm vào giỏ hàng: " . print_r($_POST, true));
+            header('Location: /du_an/8XBET/index.php?controller=Cart&action=index&error=invalid_data');
             exit;
         }
     }
+
+    /**
+     * Cập nhật số lượng sản phẩm trong giỏ hàng
+     */
+    public function update()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cartKey = $_POST['cart_key'] ?? null;
+            $quantity = $_POST['quantity'] ?? null;
+
+            // Kiểm tra dữ liệu đầu vào
+            if ($cartKey === null || $quantity === null || $quantity < 1) {
+                $_SESSION['error'] = "Dữ liệu không hợp lệ.";
+                header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+                exit;
+            }
+
+            // Cập nhật số lượng trong giỏ hàng
+            if (isset($_SESSION['cart'][$cartKey])) {
+                $_SESSION['cart'][$cartKey]['quantity'] = (int)$quantity;
+                $_SESSION['success'] = "Cập nhật số lượng thành công.";
+            } else {
+                $_SESSION['error'] = "Không tìm thấy sản phẩm trong giỏ hàng.";
+            }
+
+            // Chuyển hướng về trang giỏ hàng
+            header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+            exit;
+        } else {
+            $_SESSION['error'] = "Phương thức không được hỗ trợ.";
+            header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+            exit;
+        }
+    }
+
+    /**
+     * Xóa sản phẩm khỏi giỏ hàng
+     */
+
+    public function remove()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cartKey = $_POST['cart_key'] ?? null;
+
+            // Kiểm tra dữ liệu đầu vào
+            if ($cartKey === null) {
+                $_SESSION['error'] = "Dữ liệu không hợp lệ.";
+                header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+                exit;
+            }
+
+            // Xóa sản phẩm khỏi giỏ hàng
+            if (isset($_SESSION['cart'][$cartKey])) {
+                unset($_SESSION['cart'][$cartKey]);
+                $_SESSION['success'] = "Xóa sản phẩm thành công.";
+            } else {
+                $_SESSION['error'] = "Không tìm thấy sản phẩm trong giỏ hàng.";
+            }
+
+            // Chuyển hướng về trang giỏ hàng
+            header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+            exit;
+        } else {
+            $_SESSION['error'] = "Phương thức không được hỗ trợ.";
+            header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+            exit;
+        }
+    }
+
+    /**
+     * Xóa tất cả sản phẩm trong giỏ hàng
+     */
+    public function clear()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Xóa giỏ hàng
+        unset($_SESSION['cart']);
+        $_SESSION['success'] = "Đã xóa tất cả sản phẩm trong giỏ hàng.";
+
+        // Chuyển hướng về trang giỏ hàng
+        header("Location: /du_an/8XBET/index.php?controller=Cart&action=index");
+        exit;
+    }
+
+    // Các phương thức add, remove, update, clear vẫn giữ nguyên
 }

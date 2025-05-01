@@ -7,6 +7,8 @@ $role = $_SESSION['role'] ?? null;
 
 $config = include __DIR__ . '../../../../config.php';
 $base_url = $config['base_url'];
+$assets = $config['assets'];
+$baseURL = $config['baseURL'];
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -75,6 +77,22 @@ $base_url = $config['base_url'];
         /* Màu đỏ đậm */
         color: white;
     }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-light:hover {
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .badge.bg-danger {
+        font-size: 0.75rem;
+        padding: 0.4em 0.6em;
+    }
 </style>
 
 
@@ -103,27 +121,31 @@ $base_url = $config['base_url'];
                     <a class="nav-link text-white me-2" href="<?= $base_url; ?>/app/views/main-menu/Search.php">
                         <i class="bi bi-search fs-5"></i> <b>Search</b>
                     </a>
+
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <form method="POST" action="/../du_an/8XBET/app/views/carts/index.php"
-                            class="d-flex">
-                            <button class="btn btn-outline-dark" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">
-                                    <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
-                                </span>
+                        <form method="POST" action="/../du_an/8XBET/app/views/carts/index.php" class="d-flex me-3">
+                            <button class="btn btn-warning position-relative rounded-pill px-4 shadow-sm" type="submit">
+                                <i class="bi bi-cart-fill me-2"></i> <b>Cart</b>
+                                <?php $cart_quantity = array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')); ?>
+                                <?php if ($cart_quantity > 0): ?>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        <?= $cart_quantity ?>
+                                    </span>
+                                <?php endif; ?>
                             </button>
                         </form>
+
                         <div class="user">
-                            <a class="btn btn-light" href="<?= $base_url; ?>/app/views/login/user_dashboard.php" role="button">
-                                <i class="bi-emoji-sunglasses me-1"></i> <?= htmlspecialchars($_SESSION['user']) ?>
+                            <a class="btn btn-light rounded-pill shadow-sm" href="<?= $base_url; ?>/app/views/login/user_dashboard.php" role="button">
+                                <i class="bi bi-emoji-sunglasses me-1"></i> <?= htmlspecialchars($_SESSION['user']) ?>
                             </a>
                         </div>
                     <?php else : ?>
-                        <a class="btn btn-outline-light me-2" href="<?= $base_url; ?>/app/views/login/login.php">LOGIN</a>
-                        <a class="btn btn-warning" href="<?= $base_url; ?>/app/views/add_User/add_User.php">SIGN UP</a>
+                        <a class="btn btn-outline-light me-2 rounded-pill" href="<?= $base_url; ?>/app/views/login/login.php">LOGIN</a>
+                        <a class="btn btn-warning rounded-pill" href="<?= $base_url; ?>/app/views/add_User/add_User.php">SIGN UP</a>
                     <?php endif; ?>
                 </div>
+
             </div>
         </div>
     </nav>

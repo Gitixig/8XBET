@@ -79,11 +79,9 @@
 <?php
 $conn = mysqli_connect('localhost', 'root', '', '8xbet');
 
-
 if (!$conn) {
     die("Kết nối thất bại: " . mysqli_connect_error());
 }
-
 
 $productlist = mysqli_query($conn, 'SELECT * FROM players');
 ?>
@@ -96,21 +94,22 @@ $productlist = mysqli_query($conn, 'SELECT * FROM players');
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
-                        <img src="<?= $item['photo'] ?>" alt="Ảnh cầu thủ">
+                        <img src="<?= htmlspecialchars($item['photo']) ?>" alt="Ảnh cầu thủ">
                         <div class="product-info">
-                            <h4><?= $item['name'] ?></h4>
-                            <p>Ngày sinh: <?= $item['dob'] ?></p>
-                            <p>Chiều cao: <?= $item['height'] ?> cm</p>
+                            <h4><?= htmlspecialchars($item['name']) ?></h4>
+                            <p>Ngày sinh: <?= htmlspecialchars($item['dob']) ?></p>
+                            <p>Chiều cao: <?= htmlspecialchars($item['height']) ?> cm</p>
                             <p>Quốc gia:
-                                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
+                                <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', htmlspecialchars($item['country']))) ?>.png"
                                     style="height: 35px; width: 45px; margin-left: 20px;">
-                                <?= $item['country'] ?>
+                                <?= htmlspecialchars($item['country']) ?>
                             </p>
-                            <p>Giá : <?= $item['price'] ?></p>
+                            <p>Giá : <?= number_format($item['price'], 0) ?> VNĐ</p>
                         </div>
                         <div class="product-action">
-                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add" target="hidden_iframe">
-                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>">
+                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                                <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                <input type="hidden" name="item_type" value="player">
                                 <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
                                 <button type="submit" class="button">Add to Cart</button>
                             </form>
