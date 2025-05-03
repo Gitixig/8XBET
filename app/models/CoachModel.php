@@ -53,6 +53,12 @@ class CoachModel
         $stmt->execute([$value]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function topCoach()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM coaches ORDER BY price DESC LIMIT 3");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function deleteCoach($id)
     {

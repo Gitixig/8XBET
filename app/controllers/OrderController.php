@@ -102,4 +102,11 @@ class OrderController
             echo "Đã xảy ra lỗi: " . $e->getMessage();
         }
     }
+    public function detail(){
+           if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $ProductModel = new ProductModel();
+        $order=$ProductModel->getProductById('id');
+}
 }

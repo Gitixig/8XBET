@@ -67,6 +67,12 @@ class PlayerModel
         $stmt = $this->db->prepare("UPDATE players SET name = ?, dob = ?, country = ?, height = ?, price = ?, position = ?, photo = ? WHERE id = ?");
         $stmt->execute([$name, $dob, $country, $height, $price, $position, $photo, $id]);
     }
+    public function topPlayer()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM players ORDER BY price DESC LIMIT 3");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     /**
      * Xóa cầu thủ theo ID

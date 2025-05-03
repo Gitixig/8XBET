@@ -108,7 +108,7 @@ $baseURL = $config['baseURL'];
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Home/Home.php"><b>HOME</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/product/Home.php"><b>HOME</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TTCN</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/list_player/list_player.php"><b>CẦU THỦ</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>

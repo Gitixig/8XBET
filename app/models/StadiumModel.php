@@ -60,6 +60,12 @@ class StadiumModel
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function topStadium()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM stadiums ORDER BY price DESC LIMIT 3");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     function deleteStadium($id)
     {
