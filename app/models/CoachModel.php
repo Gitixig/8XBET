@@ -35,4 +35,28 @@ class CoachModel
         $stmt = $pdo->prepare("INSERT INTO coaches(name, dob, country,formation,play_style, price, avatar) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$name, $dob, $country, $formation, $play_style, $price, $avatar]);
     }
+
+    public function updateCoach($id, $name, $dob, $country, $formation, $play_style, $price, $avatar)
+    {
+        $stmt = $this->db->prepare("UPDATE coaches SET name = ?, dob = ?, country = ?, formation = ?, play_style = ?, price = ?, avatar = ? WHERE id = ?");
+        return $stmt->execute([$name, $dob, $country, $formation, $play_style, $price, $avatar, $id]);
+    }
+
+    public function getCoachByField($field, $value)
+    {
+        $allowedFields = ['id', 'name', 'dob', 'country', 'formation', 'play_style', 'price', 'avatar'];
+        if (!in_array($field, $allowedFields)) {
+            throw new InvalidArgumentException("Invalid field: $field");
+        }
+
+        $stmt = $this->db->prepare("SELECT `id`, `name`, `dob`, `country`, `formation`, `play_style`, `price`, `avatar` FROM `coaches` WHERE {$field} = ?");
+        $stmt->execute([$value]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteCoach($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM coaches WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
 }

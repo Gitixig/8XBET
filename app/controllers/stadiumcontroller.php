@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../models/stadium.php';
+require_once __DIR__ . '/../models/StadiumModel.php';
 
 class StadiumController
 {
@@ -75,7 +75,6 @@ class StadiumController
             }
 
             if ($stadiumModel->updateStadium($id, $name, $capacity, $country, $price, $image)) {
-                echo "<script>alert('Cập nhật thành công!');</script>";
                 echo "<script>window.location.href = '/du_an/8XBET/index.php?controller=stadium&action=stadium_admin';</script>";
                 exit;
             } else {
