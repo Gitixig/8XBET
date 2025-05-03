@@ -1,5 +1,5 @@
-<?php 
-    if (session_status() == PHP_SESSION_NONE) {
+<?php
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
@@ -14,11 +14,15 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
 ?>
 
 <style>
+    body {
+        background-color: rgb(195, 193, 193);
+    }
+
     .container-custom {
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 30px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         background-color: #fff;
     }
