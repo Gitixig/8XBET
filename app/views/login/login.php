@@ -1,4 +1,11 @@
-<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$config = include __DIR__ . '../../../../config.php';
+$base_url = $config['base_url'];
+$role = $_SESSION['role'] ?? null;
+include __DIR__ . '/../main-menu/Menu.php'; ?>
 
 <style>
     body {
@@ -18,7 +25,6 @@
         display: flex;
         justify-content: center;
         margin: auto;
-
     }
 
     .menueff-inset {
@@ -39,7 +45,6 @@
         width: 600px;
         height: 400px;
         margin-top: 150px;
-
     }
 
     h1 {
@@ -83,13 +88,9 @@
 
     .menueff-button:hover {
         background-color: white;
-        /* Đổi màu nền thành trắng */
         color: black;
-        /* Đổi màu chữ thành đen */
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        /* Thêm hiệu ứng bóng */
         transition: all 0.3s ease;
-        /* Hiệu ứng chuyển đổi mượt mà */
     }
 
     p {
@@ -97,10 +98,31 @@
         font-size: 16px;
         margin-top: 10px;
     }
+
+    .admin-options {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .admin-options a {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .admin-options a:hover {
+        background-color: #0056b3;
+    }
 </style>
 
 <body>
-    <form action="/du_an/8XBET/index.php?controller=auth&action=login" method="POST">
+    <form action="<?php echo $base_url; ?>/index.php?controller=auth&action=login" method="POST">
         <div class="menueff menueff-card">
             <h1>Login</h1>
             <label for="username"></label>
@@ -109,12 +131,9 @@
             <input type="password" name="password" id="password" class="form-control menueff menueff-input" placeholder="Password">
             <button class="menueff menueff-button" name="frmsubmit">Login</button>
             <?php if (!empty($error)) { ?>
-                <P style="color:red;"><?php echo $error; ?></P>
+                <p style="color:red;"><?php echo $error; ?></p>
             <?php } ?>
-            <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px;">Bạn chưa có tài khoản? Đăng ký nhé!</a>
-            <?php if (isset($error)): ?>
-                <p><?php echo $error; ?></p>
-            <?php endif; ?>
+            <a href="/du_an/8XBET/app/views/add_User/add_User.php" style="margin-top: 5px; color: black"><b>Bạn chưa có tài khoản? Đăng ký nhé!</b></a>
         </div>
     </form>
 </body>

@@ -1,5 +1,14 @@
-<?php include __DIR__ . '/../layout/header.php'; ?>
-
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: /du_an/8XBET/app/views/login/login.php");
+    
+    exit();
+}
+include __DIR__ . '/../layout/header.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chu Admin</title>
+    <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
@@ -21,23 +30,54 @@
         background-repeat: no-repeat;
     }
 
-    h2 {
-        color: white;
+    .admin-dashboard {
+        margin-top: 50px;
         text-align: center;
-        margin-top: 250px;
+        /* Căn giữa nội dung văn bản */
+        color: white;
+        display: flex;
+        /* Sử dụng flexbox */
+        flex-direction: column;
+        /* Sắp xếp các phần tử theo cột */
+        justify-content: center;
+        /* Căn giữa theo chiều dọc */
+        align-items: center;
+        /* Căn giữa theo chiều ngang */
+        height: 100vh;
+        /* Chiều cao toàn màn hình */
     }
 
-    p {
+    .admin-dashboard h2 {
+        margin-bottom: 20px;
+    }
+
+    .admin-options {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .admin-options a {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 18px;
         color: white;
-        text-align: center;
-        font-size: 20px;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .admin-options a:hover {
+        background-color: #0056b3;
     }
 </style>
 
 <body>
-    <div class="container mt-1">
-        <h2>Chào quản trị viên, <?= $_SESSION['user'] ?>!</h2>
-        <p>Đây là trang quản trị hệ thống.</p>
+    <div class="container admin-dashboard">
+        <h2>Chào quản trị viên, <?= htmlspecialchars($_SESSION['user']) ?>!</h2>
+        <p>Chào mừng bạn đến với trang quản trị hệ thống.</p>
     </div>
 </body>
 
