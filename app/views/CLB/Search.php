@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    <title>Trang Web Mẫu</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -12,10 +12,11 @@
     <style>
         body {
             background-color: #f8f8f8;
+            /* Tạo hiệu ứng đậm */
         }
 
         .header {
-            background-color: #B22222;
+            background-color: #DD0000;
             color: white;
             text-align: center;
             padding: 20px;
@@ -40,7 +41,7 @@
             border: 5%;
             color: white;
             font-weight: 200;
-            background-color: #B22222;
+            background-color: #DD0000;
             outline: none;
             font-family: 'Bebas Neue', Helvetica, sans-serif;
         }
@@ -93,7 +94,7 @@
         }
 
         .box:hover p {
-            color: #B22222;
+            color: #DD0000;
         }
 
 
@@ -107,7 +108,7 @@
             border: 2px solid transparent;
             color: white;
             font-weight: 200;
-            background-color: #B22222;
+            background-color: #DD0000;
             outline: none;
             transition: all 0.3s ease-in-out;
             text-align: center;
@@ -163,6 +164,7 @@
             font-size: larger;
             display: inline-block;
             max-width: 280px;
+            /* Giới hạn chiều rộng của phần văn bản, trừ đi chiều rộng ảnh (100px) và padding */
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -187,7 +189,7 @@
     <h3 style="text-align: center; margin-top: 30px;">
         <b>Có Thể Bạn Quan Tâm: </b>
     </h3>
-    <div class="container">
+    <div class="container" style="align-items: center;">
         <div class="row">
             <div class="col" style="max-width: 2500px;">
                 <div class="container">
@@ -339,6 +341,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>

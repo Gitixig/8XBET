@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manchester United</title>
+    <title>8XBET</title>
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
@@ -54,13 +54,11 @@
             </button>
 
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../../../public/img/img-logo/ChatGPT Image 14_46_48 12 thg 4, 2025.png" style="width: 70px;" alt="Logo">
+                <img src="../../../public/img/img-logo/8XBET.png" style="width: 70px;" alt="Logo">
             </a>
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav text-center">
-                    <li class="nav-item"><a class="nav-link text-white active" href="#"><b>TTCN</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>CẦU THỦ</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="../main-menu/CLB.php"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
@@ -85,6 +83,7 @@
         </div>
     </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>
