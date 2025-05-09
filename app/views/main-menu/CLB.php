@@ -115,6 +115,7 @@
         .button:hover {
             background: orangered;
         }
+        
 </style>
 
 
@@ -134,7 +135,7 @@
                 <ul class="navbar-nav text-center">
                     <li class="nav-item"><a class="nav-link text-white" href="../main-menu/CLB.php"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV..</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
