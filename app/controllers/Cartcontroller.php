@@ -62,40 +62,36 @@ class CartController
 
     public function add()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item_id'], $_POST['item_type'])) {
-            $itemId = intval($_POST['item_id']);
-            $itemType = htmlspecialchars($_POST['item_type']); // Loại bỏ ký tự đặc biệt để tránh lỗi bảo mật
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $item_id = $_POST['item_id'];
+            $item_name = $_POST['item_name'];
+            $item_price = $_POST['item_price'];
+            $item_type = $_POST['item_type'];
 
-            // Khởi tạo giỏ hàng nếu chưa có
-            if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            // Khởi tạo giỏ hàng nếu chưa tồn tại
+            if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
 
-            // Tạo key duy nhất cho từng loại sản phẩm
-            $cartKey = $itemType . '_' . $itemId;
-
-            // Nếu sản phẩm đã có trong giỏ hàng thì tăng số lượng
-            if (isset($_SESSION['cart'][$cartKey])) {
-                $_SESSION['cart'][$cartKey]['quantity']++;
+            // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
+            if (isset($_SESSION['cart'][$item_id])) {
+                $_SESSION['cart'][$item_id]['quantity']++;
             } else {
-                // Thêm sản phẩm mới vào giỏ hàng
-                $_SESSION['cart'][$cartKey] = [
-                    'id'       => $itemId,
-                    'type'     => $itemType,
+                $_SESSION['cart'][$item_id] = [
+                    'id' => $item_id,
+                    'name' => $item_name,
+                    'price' => $item_price,
+                    'type' => $item_type,
                     'quantity' => 1
                 ];
             }
 
-            // Lấy URL chuyển hướng
-            $redirectUrl = $_POST['redirect_url'] ?? '/du_an/8XBET/index.php?controller=Cart&action=index';
-            header('Location: ' . $redirectUrl);
-            exit;
-        } else {
-            error_log("Dữ liệu không hợp lệ khi thêm vào giỏ hàng: " . print_r($_POST, true));
-            header('Location: /du_an/8XBET/index.php?controller=Cart&action=index&error=invalid_data');
+            // Chuyển hướng về trang trước
+            header('Location: ' . $_POST['redirect_url']);
             exit;
         }
     }
+
 
     /**
      * Cập nhật số lượng sản phẩm trong giỏ hàng

@@ -1,0 +1,49 @@
+<!-- filepath: c:\xampp\htdocs\du_an\8XBET\app\views\product\Detail.php -->
+
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <?php if (isset($item) && !empty($item)): ?>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="<?= htmlspecialchars($item['photo'] ?? 'default.jpg') ?>" alt="Product Image" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6">
+                    <h1><?= htmlspecialchars($item['name']) ?></h1>
+                    <p><strong>id:</strong> <?= htmlspecialchars($item['id']) ?></p>
+                    <p><strong>Loại:</strong> <?= htmlspecialchars($item['type']) ?></p>
+                    <p><strong>Giá:</strong> <?= number_format($item['price'], 0) ?> VNĐ</p>
+                    <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                        <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                        <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
+                        <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
+                        <input type="hidden" name="item_type" value="<?= htmlspecialchars($item['type']) ?>">
+                        <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+                        <button type="submit" class="btn btn-primary mt-3">Thêm vào giỏ hàng</button>
+                    </form>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-warning text-center" role="alert">
+                Không tìm thấy sản phẩm.
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<?php include __DIR__ . '/../layout/footer.php'; ?>
+
+</html>

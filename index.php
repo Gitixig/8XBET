@@ -25,6 +25,13 @@ $action = $_GET['action'] ?? 'login';
 $controllerClass = ucfirst($controller) . 'Controller';
 $controllerFile = "app/controllers/$controllerClass.php";
 
+if ($controller === 'Product' && $action === 'view' && isset($_GET['id'])) {
+    require_once 'app/controllers/ProductController.php';
+    $productController = new ProductController();
+    $productController->view($_GET['id']); // Truyền tham số ID
+    exit;
+}
+
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
     $c = new $controllerClass();

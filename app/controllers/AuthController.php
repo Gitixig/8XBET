@@ -13,23 +13,21 @@ class AuthController
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = htmlspecialchars($_POST['username']); // Làm sạch dữ liệu đầu vào
-            $password = htmlspecialchars($_POST['password']); // Làm sạch dữ liệu đầu vào
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']); 
 
-            // Kiểm tra đăng nhập admin
             $admin = Admin::authenticate($username, $password);
             if ($admin) {
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-                $_SESSION['user_id'] = $admin['id']; // Thêm user_id
+                $_SESSION['user_id'] = $admin['id']; 
                 $_SESSION['user'] = $admin['username'];
                 $_SESSION['role'] = 'admin';
                 header("Location: /du_an/8XBET/index.php?controller=auth&action=adminDashboard");
                 exit;
             }
 
-            // Kiểm tra đăng nhập user
             $user = User::authenticate($username, $password);
             if ($user) {
                 if (session_status() === PHP_SESSION_NONE) {

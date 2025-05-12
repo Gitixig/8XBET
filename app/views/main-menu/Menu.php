@@ -16,7 +16,7 @@ $baseURL = $config['baseURL'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>8XBET</title>
+    <title>Manchester United</title>
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
@@ -106,17 +106,6 @@ $baseURL = $config['baseURL'];
             <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="bi bi-list fs-2"></i>
             </button>
-<<<<<<< HEAD
-
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../../../public/img/img-logo/8XBET.png" style="width: 70px;" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item"><a class="nav-link text-white" href="../main-menu/CLB.php"><b>CLB</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>SÂN VẬN ĐỘNG</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#"><b>HLV</b></a></li>
-=======
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/product/Home.php"><b>HOME</b></a></li>
@@ -125,7 +114,6 @@ $baseURL = $config['baseURL'];
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>CLB</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Stadiums/Stadium.php"><b>SÂN VẬN ĐỘNG</b></a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="<?= $base_url; ?>/app/views/Coach/coach.php"><b>HLV</b></a></li>
->>>>>>> 06a79c064b2dca46b5c3fd75e3fa5d92112859c2
                     <li class="nav-item"><a class="nav-link text-white" href="#"><b>TIN TỨC</b></a></li>
                 </ul>
 
@@ -163,7 +151,6 @@ $baseURL = $config['baseURL'];
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
 </body>
 
 </html>

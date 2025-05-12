@@ -108,6 +108,8 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
                         <div class="product-action">
                             <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
                                 <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
+                                <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
                                 <input type="hidden" name="item_type" value="stadium">
                                 <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
                                 <button type="submit" class="button">Add to Cart</button>

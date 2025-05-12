@@ -56,7 +56,6 @@ class OrderController
 
         try {
             foreach ($_SESSION['cart'] as $key => $item) {
-                // Kiểm tra dữ liệu giỏ hàng
                 if (!isset($item['id'], $item['type'], $item['quantity'])) {
                     error_log("Mục giỏ hàng không hợp lệ: " . print_r($item, true));
                     continue; // Bỏ qua mục không hợp lệ

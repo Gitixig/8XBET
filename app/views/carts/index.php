@@ -1,25 +1,11 @@
-<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
+<!-- filepath: c:\xampp\htdocs\du_an\8XBET\app\views\carts\index.php -->
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-
-
-// Lấy giỏ hàng từ session
 $cartItems = $_SESSION['cart'] ?? [];
-
-// Tải các model cần thiết
-require_once __DIR__ . '/../../models/ProductModel.php';
-require_once __DIR__ . '/../../models/CoachModel.php';
-require_once __DIR__ . '/../../models/StadiumModel.php';
-require_once __DIR__ . '/../../models/PlayerModel.php';
-
-$productModel = new ProductModel();
-$coachModel = new CoachModel();
-$stadiumModel = new StadiumModel();
-$playerModel = new PlayerModel();
 ?>
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -47,8 +33,8 @@ $playerModel = new PlayerModel();
                             <thead class="table-secondary">
                                 <tr>
                                     <th>Mã</th>
-                                    <th>Loại</th>
                                     <th>Tên</th>
+                                    <th>Loại</th>
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Thành tiền</th>
@@ -59,37 +45,15 @@ $playerModel = new PlayerModel();
                                 <?php
                                 $grandTotal = 0;
                                 foreach ($cartItems as $key => $item):
-                                    $itemType = $item['type'];
-                                    $itemId = $item['id'];
-                                    $quantity = $item['quantity'];
-                                    $product = null;
-
-                                    if ($itemType === 'product') {
-                                        $product = $productModel->getProductById($itemId);
-                                    } elseif ($itemType === 'coach') {
-                                        $product = $coachModel->getCoachById($itemId);
-                                    } elseif ($itemType === 'stadium') {
-                                        $product = $stadiumModel->getStadiumById($itemId);
-                                    } elseif ($itemType === 'player') {
-                                        $product = $playerModel->getPlayerById($itemId);
-                                    }
-
-                                    if (!$product) {
-                                        error_log("Không tìm thấy sản phẩm với ID: $itemId và loại: $itemType");
-                                        continue;
-                                    }
-
-                                    $name = $product['name'];
-                                    $price = $product['price'];
-                                    $lineTotal = $price * $quantity;
+                                    $lineTotal = $item['price'] * $item['quantity'];
                                     $grandTotal += $lineTotal;
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($itemId) ?></td>
-                                        <td><?= ucfirst(htmlspecialchars($itemType)) ?></td>
-                                        <td><?= htmlspecialchars($name) ?></td>
-                                        <td><?= number_format($price, 0) ?> VNĐ</td>
-                                        <td>
+                                        <td><?= htmlspecialchars($item['id']) ?></td>
+                                        <td><?= htmlspecialchars($item['name']) ?></td>
+                                        <td><?= htmlspecialchars($item['type']) ?></td>
+                                        <td><?= number_format($item['price'], 0) ?> VNĐ</td> 
+                                        <td><?= htmlspecialchars($item['quantity']) ?>
                                             <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=update" class="d-flex justify-content-center align-items-center gap-2">
                                                 <input type="hidden" name="cart_key" value="<?= htmlspecialchars($key) ?>">
                                                 <input type="number" name="quantity" value="<?= htmlspecialchars($quantity) ?>" min="1" class="form-control w-50">
@@ -103,7 +67,7 @@ $playerModel = new PlayerModel();
                                             <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=remove">
                                                 <input type="hidden" name="cart_key" value="<?= htmlspecialchars($key) ?>">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                    <i class="bi bi-trash"></i>
+                                                    Xóa
                                                 </button>
                                             </form>
                                         </td>
@@ -124,12 +88,12 @@ $playerModel = new PlayerModel();
                 <div class="card-footer bg-light d-flex justify-content-end gap-2 rounded-bottom-4">
                     <form method="post" action="/du_an/8XBET/index.php?controller=Order&action=checkout">
                         <button type="submit" class="btn btn-success">
-                            <i class="bi bi-credit-card"></i> Thanh Toán
+                            Thanh Toán
                         </button>
                     </form>
                     <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=clear">
                         <button type="submit" class="btn btn-warning">
-                            <i class="bi bi-x-circle"></i> Xóa toàn bộ
+                            Xóa toàn bộ
                         </button>
                     </form>
                 </div>
@@ -137,11 +101,8 @@ $playerModel = new PlayerModel();
         </div>
     </div>
 
-    <!-- Bootstrap + Bootstrap Icons -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>
-
-<?php include __DIR__ . '/../layout/footer.php'; ?>
 
 </html>

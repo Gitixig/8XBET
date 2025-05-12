@@ -39,7 +39,7 @@ class PlayerController
             $playerModel = new PlayerModel();
             $playerModel->create($name, $dob, $country, $height, $price, $position, $photoPath);
 
-            header("Location: /du_an/8XBET/index.php?controller=player&action=list_player");
+            header("Location: /du_an/8XBET/index.php?controller=player&action=list_player_admin");
             exit;
         }
     }

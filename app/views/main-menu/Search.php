@@ -1,16 +1,8 @@
+<!-- filepath: c:\xampp\htdocs\du_an\8XBET\app\views\main-menu\Search.php -->
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
-<<<<<<< HEAD
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-=======
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
@@ -20,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet" />
 
->>>>>>> 06a79c064b2dca46b5c3fd75e3fa5d92112859c2
     <style>
         body {
             background-color: #f8f8f8;
@@ -39,8 +30,7 @@
         .search-box {
             text-align: center;
             margin: 20px auto;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
+            position: relative;
         }
 
         .search-box input {
@@ -121,12 +111,12 @@
     <div class="header">
         <div class="search-box">
             <h4>Hi There</h4>
-            <input type="text" placeholder="TÌM KIẾM CẦU THỦ, CÂU HỎI THƯỜNG GẶP..." />
+            <input type="text" id="search" placeholder="TÌM KIẾM CẦU THỦ, CÂU HỎI THƯỜNG GẶP..." />
         </div>
     </div>
+    <div class="container mt-4" id="results">
 
-    <h3 class="text-center mt-4"><b>Có Thể Bạn Quan Tâm:</b></h3>
-
+    </div>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 col-md-4">
@@ -213,11 +203,34 @@
             </div>
         </div>
     </div>
-
 
 
 
 
 </body>
+<script>
+    const searchInput = document.getElementById('search');
+    const resultsContainer = document.getElementById('results');
+
+    // Xử lý tìm kiếm khi nhấn Enter
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+                performSearch(query);
+            }
+        }
+    });
+
+    // Hàm thực hiện tìm kiếm
+    function performSearch(query) {
+        fetch(`/du_an/8XBET/app/controllers/SearchController.php?q=${query}`)
+            .then(response => response.text())
+            .then(data => {
+                resultsContainer.innerHTML = data;
+            });
+    }
+</script>
 
 </html>

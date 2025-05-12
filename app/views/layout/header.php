@@ -15,7 +15,7 @@ $base_url = $config['base_url'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         body {
@@ -107,13 +107,8 @@ $base_url = $config['base_url'];
                     <?php else: ?>
                         <li class="nav-item"><a class="nav-link" href="/du_an/8XBET/index.php?controller=auth&action=logout">Logout</a></li>
                     <?php endif; ?>
->>>>>>> 06a79c064b2dca46b5c3fd75e3fa5d92112859c2
                 </ul>
             </div>
-            <a class="nav-link text-white me-3 d-flex align-items-center" href="../main-menu/Search.php">
-                <b>Search</b>
-                <i class="bi bi-search fs-4"></i>
-            </a>
         </div>
     </nav>
 
