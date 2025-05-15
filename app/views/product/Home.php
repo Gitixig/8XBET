@@ -112,21 +112,21 @@
     <div class="news-header text-center">TODAY ON 8XBET.COM</div>
     <div class="container-custom">
         <div class="row mb-4" style="height: 400px;">
-            <?php for ($i = 0; $i < 2; $i++): ?>
-                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center ">
+            <?php for ($i = 0; $i < 1; $i++): ?>
+                <div class="col-12 d-flex align-items-center justify-content-center ">
                     <?php include __DIR__ . '/../product/news-card_2.php'; ?>
                 </div>
             <?php endfor; ?>
         </div>
-
         <div class="row" style="height: 300px;">
             <?php for ($i = 0; $i < 4; $i++): ?>
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
-                    <?php include __DIR__ . '/../product/news-card_2.php'; ?>
+                    <?php include __DIR__ . '/../product/news-card_3.php'; ?>
                 </div>
             <?php endfor; ?>
         </div>
     </div>
+    
 
 
     <div class="news-header text-center">VIDEO HIGHTLIGHT IN WEEK</div>

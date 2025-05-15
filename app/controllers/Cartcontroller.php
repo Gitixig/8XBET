@@ -61,36 +61,47 @@ class CartController
     }
 
     public function add()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $item_id = $_POST['item_id'];
-            $item_name = $_POST['item_name'];
-            $item_price = $_POST['item_price'];
-            $item_type = $_POST['item_type'];
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $item_id = $_POST['item_id'];
+        $item_name = $_POST['item_name'];
+        $item_price = $_POST['item_price'];
+        $item_type = $_POST['item_type'];
+        $redirect_url = $_POST['redirect_url'];
 
-            // Khởi tạo giỏ hàng nếu chưa tồn tại
-            if (!isset($_SESSION['cart'])) {
-                $_SESSION['cart'] = [];
-            }
-
-            // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
-            if (isset($_SESSION['cart'][$item_id])) {
-                $_SESSION['cart'][$item_id]['quantity']++;
-            } else {
-                $_SESSION['cart'][$item_id] = [
-                    'id' => $item_id,
-                    'name' => $item_name,
-                    'price' => $item_price,
-                    'type' => $item_type,
-                    'quantity' => 1
-                ];
-            }
-
-            // Chuyển hướng về trang trước
-            header('Location: ' . $_POST['redirect_url']);
-            exit;
+        // Khởi tạo giỏ hàng nếu chưa tồn tại
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
         }
+
+        $already_in_cart = false;
+        foreach ($_SESSION['cart'] as $item) {
+            if ($item['id'] == $item_id && $item['type'] == $item_type) {
+                $already_in_cart = true;
+                break;
+            }
+        }
+
+        if (!$already_in_cart) {
+            // Sản phẩm chưa có trong giỏ hàng, thêm nó vào
+            $_SESSION['cart'][] = [
+                'id' => $item_id,
+                'name' => $item_name,
+                'price' => $item_price,
+                'type' => $item_type,
+                'quantity' => 1 // Mặc định số lượng là 1 khi thêm mới
+            ];
+            $_SESSION['success'] = "Đã thêm '$item_name' vào giỏ hàng.";
+        } else {
+            // Sản phẩm đã có trong giỏ hàng
+            $_SESSION['error'] = "Sản phẩm '$item_name' đã có trong giỏ hàng của bạn.";
+        }
+
+        // Chuyển hướng về trang trước
+        header('Location: ' . $redirect_url);
+        exit;
     }
+}
 
 
     /**

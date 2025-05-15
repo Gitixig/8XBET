@@ -97,6 +97,11 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
                         <img src="<?= htmlspecialchars($item['image']) ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
                             <h4><?= htmlspecialchars($item['name']) ?></h4>
+                            <p>
+                                <img src="<?= htmlspecialchars($item['logo']) ?>" alt="Logo Câu Lạc Bộ" style="height: 20px; width: 20px; margin-right: 5px;">
+                                Câu lạc bộ: <?= htmlspecialchars($item['club_name']) ?>
+                            </p>
+                            <p>Thành phố: <?= htmlspecialchars($item['city']) ?></p>
                             <p>Sức chứa: <?= htmlspecialchars($item['capacity']) ?></p>
                             <p>Quốc gia:
                                 <img id="country-flag" src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', htmlspecialchars($item['country']))) ?>.png"
@@ -114,7 +119,6 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
                                 <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
                                 <button type="submit" class="button">Add to Cart</button>
                             </form>
-
                             <button class="button">Buy</button>
                         </div>
                     </div>
