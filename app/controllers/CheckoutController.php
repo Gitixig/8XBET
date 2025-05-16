@@ -1,6 +1,7 @@
 <?php
-require_once '../../config/database.php'; // Kết nối đến database
-require_once '../helpers/mail_helper.php'; // Import hàm gửi email
+require_once __DIR__ . '/../../config/database.php'; // Kết nối đến database
+require_once __DIR__ . '/../helpers/mail_helper.php'; // Import hàm gửi email
+
 
 use PHPMailer\PHPMailer\PHPMailer; // Các class của PHPMailer
 use PHPMailer\PHPMailer\SMTP;
@@ -22,7 +23,8 @@ class CheckoutController
             $totalAmount = $_POST['totalAmount'];
 
             // 2. Bắt đầu transaction (để đảm bảo tính toàn vẹn dữ liệu)
-            $pdo->beginTransaction();
+           $pdo = Database::connect();
+           $pdo->beginTransaction();
 
             try {
                 // 3. Lưu thông tin đơn hàng vào bảng 'orders'
@@ -70,18 +72,18 @@ class CheckoutController
                 if (sendOrderConfirmationEmailToAdmin($emailData)) {
                     $_SESSION['success_message'] = "Đơn hàng của bạn đã được đặt thành công. Thông tin chi tiết đã được gửi đến email của bạn và admin.";
                     unset($_SESSION['cart']); // Xóa giỏ hàng sau khi đặt hàng thành công
-                    header('Location: /thank-you'); // Chuyển hướng đến trang cảm ơn
+                    header('Location: thank-you'); // Chuyển hướng đến trang cảm ơn
                     exit();
                 } else {
                     $_SESSION['error_message'] = "Đã có lỗi xảy ra khi gửi thông báo đến admin. Vui lòng liên hệ lại sau.";
-                    header('Location: /checkout'); // Chuyển hướng trở lại trang thanh toán
+                    header('Location: checkout'); // Chuyển hướng trở lại trang thanh toán
                     exit();
                 }
             } catch (Exception $e) {
                 // 8. Nếu có lỗi, rollback transaction
                 $pdo->rollBack();
                 $_SESSION['error_message'] = "Đã có lỗi xảy ra trong quá trình xử lý đơn hàng: " . $e->getMessage();
-                header('Location: /checkout'); // Chuyển hướng trở lại trang thanh toán
+                header('Location: checkout'); // Chuyển hướng trở lại trang thanh toán
                 exit();
             }
         }

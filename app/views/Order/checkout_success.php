@@ -15,7 +15,7 @@
 <body class="bg-gray-100 py-10">
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
         <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Thông Tin Thanh Toán</h1>
-        <form method="post" action="/checkout/process" class="space-y-4">
+        <form method="post" action="/du_an/8XBET/index.php?controller=checkout&action=processPayment" class="space-y-4">
             <div>
                 <label for="customerName" class="block text-gray-700 text-sm font-bold mb-2">Họ và tên:</label>
                 <input type="text" id="customerName" name="customerName" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -45,7 +45,7 @@
                 <input type="text" id="totalAmount" name="totalAmount" required readonly value="100.000 VNĐ" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200">
                 <p class="text-gray-500 text-xs italic">Vui lòng xác nhận lại tổng tiền trước khi thanh toán.</p>
             </div>
-            <button type="submit" name="checkout" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+            <button type="submit" name="Checkout" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
                 Xác nhận thanh toán
             </button>
         </form>

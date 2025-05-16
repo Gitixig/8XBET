@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require_once '../../core/PHPMailer/PHPMailer.php';
-require_once '../../core/PHPMailer/SMTP.php';
-require_once '../../core/PHPMailer/Exception.php';
+require_once __DIR__ . '/../../core/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../../core/PHPMailer/SMTP.php';
+require_once __DIR__ . '/../../core/PHPMailer/Exception.php';
 
 function sendOrderConfirmationEmailToAdmin($orderData) {
     $mail = new PHPMailer(true);
