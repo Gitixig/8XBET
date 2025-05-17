@@ -105,7 +105,7 @@ $productlist = mysqli_query($conn, 'SELECT * FROM coaches');
                             </p>
                             <p>Sơ đồ: <?= $item['formation'] ?></p>
                             <p>Phong cách chơi: <?= $item['play_style'] ?></p>
-                            <p>Giá : <?= $item['price'] ?></p>
+                            <p>Giá : <?= number_format($item['price'], 0) ?> VNĐ</p>
                         </div>
                         <div class="product-action">
                             <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add"><input type="hidden" name="item_type" value="coach">
