@@ -7,6 +7,7 @@ require_once "app/controllers/UserController.php";
 require_once "app/controllers/OrderController.php";
 require_once "app/controllers/HomeController.php";
 require_once "app/controllers/CartController.php";
+require_once "app/controllers/CheckoutController.php";
 require_once __DIR__ . '/config.php';
 
 spl_autoload_register(function ($class) {

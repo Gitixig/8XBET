@@ -19,7 +19,7 @@ class OrderModel
      */
     public function createOrder($userId, $total)
     {
-        $stmt = $this->db->prepare("INSERT INTO orders (user_id, total_price, created_at) VALUES (?, ?, NOW())");
+        $stmt = $this->db->prepare("INSERT INTO orders (user_id, total_price, order_date) VALUES (?, ?, NOW())");
         $stmt->execute([$userId, $total]);
         return $this->db->lastInsertId(); // Lấy ID của đơn hàng vừa tạo
     }
@@ -44,7 +44,7 @@ class OrderModel
      */
     public function getOrdersByUserId($userId)
     {
-        $stmt = $this->db->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC");
+        $stmt = $this->db->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC");
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

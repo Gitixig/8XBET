@@ -25,7 +25,7 @@
                     <?php foreach ($order['items'] as $item): ?>
                         <tr>
                             <td>#<?= htmlspecialchars($order['id']) ?></td>
-                            <td><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></td>
+                            <td><?= date('d/m/Y H:i', strtotime($order['order_date'])) ?></td>
                             <td><?= number_format($order['total_price'], 0) ?> VNĐ</td>
                             <td><?= htmlspecialchars($item['product_name'] ?? 'N/A') ?></td>
                             <td><?= htmlspecialchars($item['quantity'] ?? 'N/A') ?></td>
