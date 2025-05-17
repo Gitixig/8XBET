@@ -72,7 +72,7 @@ class CheckoutController
                 if (sendOrderConfirmationEmailToAdmin($emailData)) {
                     $_SESSION['success_message'] = "Đơn hàng của bạn đã được đặt thành công. Thông tin chi tiết đã được gửi đến email của bạn và admin.";
                     unset($_SESSION['cart']); // Xóa giỏ hàng sau khi đặt hàng thành công
-                    header('Location: thank-you'); // Chuyển hướng đến trang cảm ơn
+                    header('Location: /du_an/8Xbet/app/views/Order/thank-you.php'); // Chuyển hướng đến trang cảm ơn
                     exit();
                 } else {
                     $_SESSION['error_message'] = "Đã có lỗi xảy ra khi gửi thông báo đến admin. Vui lòng liên hệ lại sau.";

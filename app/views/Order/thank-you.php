@@ -1,3 +1,6 @@
+<?php if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -26,6 +29,7 @@
         <p style="color: green;"><?php echo $_SESSION['success_message']; ?></p>
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
-    <a href="/">Tiếp tục mua sắm</a>
-</body>
+    <button><a href="/du_an/8XBET/app/views/product/Home.php">Tiếp tục mua sắm</a>
+</body></button>
+    
 </html>

@@ -14,17 +14,17 @@ function sendOrderConfirmationEmailToAdmin($orderData) {
     try {
         // Cấu hình SMTP
         $mail->isSMTP();
-        $mail->Host       = '90zuka09@gmail.com'; // Thay bằng SMTP server của bạn (ví dụ: smtp.gmail.com)
+        $mail->Host       = 'smtp.gmail.com'; // Thay bằng SMTP server của bạn (ví dụ: smtp.gmail.com)
         $mail->SMTPAuth   = true;
-        $mail->Username   = '90zuka09@gmail.com'; // Thay bằng email admin của bạn
-        $mail->Password   = 'Nhat009pk'; // Thay bằng mật khẩu email admin của bạn
+        $mail->Username   = 'hatuandat190290@gmail.com'; // Thay bằng email admin của bạn
+        $mail->Password   = 'cxqo sxnb ztnu opvk'; // Thay bằng mật khẩu email admin của bạn
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Hoặc PHPMailer::ENCRYPTION_SMTPS
         $mail->Port       = 587; // Hoặc 465 nếu dùng SMTPS
         $mail->CharSet    = 'UTF-8';
 
         // Người gửi và người nhận
-        $mail->setFrom('90zuka09@gmail.com', '8XBET'); // Email và tên người gửi
-        $mail->addAddress('90zuka09@gmail.com', 'Admin_Nhật');     // Email và tên người nhận (admin)
+        $mail->setFrom('90zuka09@gmail.com', 'asfihw'); // Email và tên người gửi
+        $mail->addAddress('hatuandat190290@gmail.com', 'Admin_Taolahaixuanbac');     // Email và tên người nhận (admin)
         // $mail->addCC('another_admin@example.com'); // Gửi thêm bản sao cho người khác (tùy chọn)
 
         // Nội dung email
@@ -44,7 +44,7 @@ function sendOrderConfirmationEmailToAdmin($orderData) {
         $body .= '<tbody>';
         foreach ($orderData['items'] as $item) {
             $body .= '<tr>';
-            $body .= '<td style="border: 1px solid #ddd; padding: 8px;">' . htmlspecialchars($item['name']) . '</td>';
+            $body .= '<td style="border: 1px solid #ddd; padding: 8px;">' . htmlspecialchars($item['product_name']) . '</td>';
             $body .= '<td style="border: 1px solid #ddd; padding: 8px; text-align: right;">' . htmlspecialchars($item['quantity']) . '</td>';
             $body .= '<td style="border: 1px solid #ddd; padding: 8px; text-align: right;">' . number_format($item['price']) . ' VNĐ</td>';
             $body .= '<td style="border: 1px solid #ddd; padding: 8px; text-align: right;">' . number_format($item['price'] * $item['quantity']) . ' VNĐ</td>';
