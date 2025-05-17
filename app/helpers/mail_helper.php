@@ -23,7 +23,7 @@ function sendOrderConfirmationEmailToAdmin($orderData) {
         $mail->CharSet    = 'UTF-8';
 
         // Người gửi và người nhận
-        $mail->setFrom('90zuka09@gmail.com', '8XBET'); // Email và tên người gửi
+        $mail->setFrom('hatuandat190290@gmail.com', 'memaybeo'); // Email và tên người gửi
         $mail->addAddress('90zuka09@gmail.com', 'Admin_Nhật');     // Email và tên người nhận (admin)
         // $mail->addCC('another_admin@example.com'); // Gửi thêm bản sao cho người khác (tùy chọn)
 

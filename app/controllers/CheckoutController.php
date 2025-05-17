@@ -76,7 +76,7 @@ class CheckoutController
                     exit();
                 } else {
                     $_SESSION['error_message'] = "Đã có lỗi xảy ra khi gửi thông báo đến admin. Vui lòng liên hệ lại sau.";
-                    header('Location: checkout'); // Chuyển hướng trở lại trang thanh toán
+                    header('Location: thank-you'); // Chuyển hướng trở lại trang thanh toán
                     exit();
                 }
             } catch (Exception $e) {
