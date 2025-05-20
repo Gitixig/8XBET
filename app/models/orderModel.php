@@ -56,9 +56,15 @@ class OrderModel
      */
     public function getOrderItems($orderId)
     {
-        $stmt = $this->db->prepare("SELECT oi.*, p.name AS product_name 
+        $stmt = $this->db->prepare("SELECT oi.*,  pl.name AS player_name, 
+                                       p.name AS product_name, 
+                                       c.name AS coach_name, 
+                                       s.name AS stadium_name
                                     FROM order_items oi
                                     JOIN products p ON oi.product_id = p.id
+                                    LEFT JOIN players pl ON oi.product_id = pl.product_id
+                                    LEFT JOIN coaches c ON oi.product_id = c.product_id
+                                    LEFT JOIN stadiums s ON oi.product_id = s.product_id
                                     WHERE oi.order_id = ?");
         $stmt->execute([$orderId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
