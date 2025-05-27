@@ -58,6 +58,7 @@ class CartController
 
         // Bao gồm view giỏ hàng
         include __DIR__ . '/../views/carts/index.php';
+        include __DIR__ . '/../views/Order/checkout_success.php';
     }
 
     public function add()

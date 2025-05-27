@@ -52,11 +52,11 @@ $cartItems = $_SESSION['cart'] ?? [];
                                         <td><?= htmlspecialchars($item['id']) ?></td>
                                         <td><?= htmlspecialchars($item['name']) ?></td>
                                         <td><?= htmlspecialchars($item['type']) ?></td>
-                                        <td><?= number_format($item['price'], 0) ?> VNĐ</td> 
+                                        <td><?= number_format($item['price'], 0) ?> VNĐ</td>
                                         <td><?= htmlspecialchars($item['quantity']) ?>
                                             <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=update" class="d-flex justify-content-center align-items-center gap-2">
                                                 <input type="hidden" name="cart_key" value="<?= htmlspecialchars($key) ?>">
-                                                <input type="number" name="quantity" value="<?= htmlspecialchars($quantity) ?>" min="1" class="form-control w-50">
+                                                <input type="number" name="quantity" value="<?= htmlspecialchars($item['quantity']) ?>" min="1" class="form-control w-50">
                                                 <button type="submit" class="btn btn-outline-primary btn-sm">
                                                     <i class="bi bi-arrow-repeat"></i>
                                                 </button>
