@@ -126,7 +126,7 @@
             <?php endfor; ?>
         </div>
     </div>
-    
+
 
 
     <div class="news-header text-center">VIDEO HIGHTLIGHT IN WEEK</div>

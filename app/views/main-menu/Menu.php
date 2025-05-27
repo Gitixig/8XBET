@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -20,84 +21,82 @@ $baseURL = $config['baseURL'];
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FFD700;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: rgb(250, 249, 244);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #B22222;
+            color: white;
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: white;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-light:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .badge.bg-danger {
+            font-size: 0.75rem;
+            padding: 0.4em 0.6em;
+        }
+    </style>
 </head>
-<style>
-    .nav-link {
-        position: relative;
-        text-decoration: none;
-        color: white;
-        transition: color 0.3s ease;
-    }
-
-    .nav-link:hover {
-        color: #FFD700;
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -5px;
-        width: 0;
-        height: 2px;
-        background-color: rgb(250, 249, 244);
-        transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-        width: 100%;
-    }
-
-    .dropdown-menu .dropdown-item:hover {
-        background-color: #B22222;
-        color: white;
-    }
-
-    .dropdown-menu .dropdown-item {
-        color: white;
-    }
-
-    .navbar-nav .nav-item {
-        margin-right: 10px;
-    }
-
-    .navbar-nav .nav-link {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .dropdown-menu .dropdown-item.btn-danger {
-        background-color: #DC3545;
-        /* Màu đỏ */
-        color: white;
-    }
-
-    .dropdown-menu .dropdown-item.btn-danger:hover {
-        background-color: #B22222;
-        /* Màu đỏ đậm */
-        color: white;
-    }
-
-    .btn-warning:hover {
-        background-color: #e0a800;
-        color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-light:hover {
-        background-color: #f8f9fa;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .badge.bg-danger {
-        font-size: 0.75rem;
-        padding: 0.4em 0.6em;
-    }
-</style>
-
 
 <body>
-
     <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #B22222;">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="<?= $base_url; ?>/app/views/product/Home.php">
@@ -144,12 +143,32 @@ $baseURL = $config['baseURL'];
                         <a class="btn btn-warning rounded-pill" href="<?= $base_url; ?>/app/views/add_User/add_User.php">SIGN UP</a>
                     <?php endif; ?>
                 </div>
-
             </div>
         </div>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.navbar');
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Kiểm tra nếu người dùng cuộn xuống
+                if (scrollTop > lastScrollTop && scrollTop > 50) {
+                    // Cuộn xuống -> Ẩn menu
+                    navbar.classList.add('hidden');
+                } else if (scrollTop < lastScrollTop && scrollTop > 50) {
+                    // Cuộn lên -> Hiện menu
+                    navbar.classList.remove('hidden');
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Đảm bảo giá trị không âm
+            });
+        });
+    </script>
 </body>
 
 </html>
