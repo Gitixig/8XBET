@@ -12,7 +12,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold mb-2">
                             <p class="card-text fs-5 fw-semibold">ID: <?= htmlspecialchars($item['id']) ?></p>
-                            <?= htmlspecialchars($item['name']) ?>
+                            <?= htmlspecialchars($item['Name']) ?>
                         </h5>
                         <span class="badge bg-secondary mb-2">Loại: <?= htmlspecialchars($item['type']) ?></span>
                         <p class="card-text text-danger fs-5 fw-semibold">Giá: <?= htmlspecialchars(number_format($item['price'], 0)) ?> VND</p>

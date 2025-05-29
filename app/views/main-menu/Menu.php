@@ -93,10 +93,11 @@ $baseURL = $config['baseURL'];
             font-size: 0.75rem;
             padding: 0.4em 0.6em;
         }
+        
     </style>
 </head>
 
-<body>
+<body >
     <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #B22222;">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="<?= $base_url; ?>/app/views/product/Home.php">

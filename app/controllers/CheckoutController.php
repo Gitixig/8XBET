@@ -1,20 +1,18 @@
 <?php
 require_once __DIR__ . '/../../config/database.php'; // Kết nối đến database
-require_once __DIR__ . '/../helpers/mail_helper.php'; // Import hàm gửi email
 
-
-use PHPMailer\PHPMailer\PHPMailer; // Các class của PHPMailer
-use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+require_once __DIR__ . '/../../vendor/autoload.php'; // Composer autoload
 
 class CheckoutController
 {
     public function processPayment()
     {
-        global $pdo; // Sử dụng biến kết nối PDO đã được tạo
+        global $pdo;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Checkout'])) {
-            // 1. Lấy dữ liệu từ form thanh toán
             $customerName = $_POST['customerName'];
             $customerEmail = $_POST['customerEmail'];
             $customerPhone = $_POST['customerPhone'];
@@ -22,12 +20,11 @@ class CheckoutController
             $paymentMethod = $_POST['paymentMethod'];
             $totalAmount = $_POST['totalAmount'];
 
-            // 2. Bắt đầu transaction (để đảm bảo tính toàn vẹn dữ liệu)
-           $pdo = Database::connect();
-           $pdo->beginTransaction();
+            $pdo = Database::connect();
+            $pdo->beginTransaction();
 
             try {
-                // 3. Lưu thông tin đơn hàng vào bảng 'orders'
+                // Lưu đơn hàng
                 $stmt = $pdo->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, shipping_address, payment_method, total_amount, order_date) VALUES (:name, :email, :phone, :address, :payment, :total, NOW())");
                 $stmt->bindParam(':name', $customerName);
                 $stmt->bindParam(':email', $customerEmail);
@@ -37,53 +34,109 @@ class CheckoutController
                 $stmt->bindParam(':total', $totalAmount);
                 $stmt->execute();
 
-                $orderId = $pdo->lastInsertId(); // Lấy ID của đơn hàng vừa được tạo
+                $orderId = $pdo->lastInsertId();
 
-                // 4. Lưu chi tiết sản phẩm của đơn hàng vào bảng 'order_items'
-                $cartItems = $_SESSION['cart'] ?? []; // Giả sử thông tin giỏ hàng được lưu trong session
+                // Lưu chi tiết sản phẩm
+                $cartItems = $_SESSION['cart'] ?? [];
                 foreach ($cartItems as $item) {
                     $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (:order_id, :product_id, :product_name, :quantity, :price)");
                     $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
-                    $stmt->bindParam(':product_id', $item['id'], PDO::PARAM_INT); // Giả sử $item['id'] là ID sản phẩm
+                    $stmt->bindParam(':product_id', $item['id'], PDO::PARAM_INT);
                     $stmt->bindParam(':product_name', $item['name']);
                     $stmt->bindParam(':quantity', $item['quantity'], PDO::PARAM_INT);
                     $stmt->bindParam(':price', $item['price'], PDO::PARAM_INT);
                     $stmt->execute();
                 }
 
-                // 5. Nếu mọi thứ thành công, commit transaction
                 $pdo->commit();
 
-                // 6. Lấy thông tin đơn hàng để gửi email xác nhận
+                // Lấy lại thông tin đơn hàng và sản phẩm
                 $orderData = $this->getOrderDetails($orderId);
                 $orderItems = $this->getOrderItems($orderId);
-                $emailData = [
-                    'order_id' => $orderData['id'],
-                    'customer_name' => $orderData['customer_name'],
-                    'customer_email' => $orderData['customer_email'],
-                    'customer_phone' => $orderData['customer_phone'],
-                    'shipping_address' => $orderData['shipping_address'],
-                    'payment_method' => $orderData['payment_method'],
-                    'total_amount' => $orderData['total_amount'],
-                    'items' => $orderItems
-                ];
 
-                // 7. Gọi hàm để gửi email xác nhận đến admin
-                if (sendOrderConfirmationEmailToAdmin($emailData)) {
-                    $_SESSION['success_message'] = "Đơn hàng của bạn đã được đặt thành công. Thông tin chi tiết đã được gửi đến email của bạn và admin.";
-                    unset($_SESSION['cart']); // Xóa giỏ hàng sau khi đặt hàng thành công
-                    header('Location: /du_an/8Xbet/app/views/Order/thank-you.php'); // Chuyển hướng đến trang cảm ơn
-                    exit();
-                } else {
-                    $_SESSION['error_message'] = "Đã có lỗi xảy ra khi gửi thông báo đến admin. Vui lòng liên hệ lại sau.";
-                    header('Location: checkout'); // Chuyển hướng trở lại trang thanh toán
-                    exit();
+                // Chuẩn bị nội dung sản phẩm cho email
+                $itemList = "";
+                foreach ($orderItems as $item) {
+                    $itemList .= "{$item['product_name']} x {$item['quantity']} - " . number_format($item['price']) . " VNĐ<br>";
                 }
+
+                // Gửi email cho admin
+                try {
+                    $mailAdmin = new PHPMailer(true);
+                    $mailAdmin->isSMTP();
+                    $mailAdmin->Host = 'smtp.gmail.com';
+                    $mailAdmin->SMTPAuth = true;
+                    $mailAdmin->Username = 'thaibao250306@gmail.com'; // tài khoản gửi
+                    $mailAdmin->Password = 'qseg dgnj qwxn rdpi';     // mật khẩu ứng dụng
+                    $mailAdmin->SMTPSecure = 'tls';
+                    $mailAdmin->Port = 587;
+
+                    $mailAdmin->setFrom('8xbetshop@gmail.com', '8XBET Shop');
+                    $mailAdmin->addAddress('thaibao123xyz@gmail.com', 'Chủ Shop'); // email admin
+
+                    $mailAdmin->isHTML(true);
+                    $mailAdmin->CharSet = 'UTF-8';
+                    $mailAdmin->Subject = "Đơn hàng mới từ $customerName - Mã đơn #$orderId";
+                    $mailAdmin->Body = "
+                        <h2>Thông tin đơn hàng mới</h2>
+                        <p><strong>Khách hàng:</strong> $customerName</p>
+                        <p><strong>Email:</strong> $customerEmail</p>
+                        <p><strong>Điện thoại:</strong> $customerPhone</p>
+                        <p><strong>Địa chỉ:</strong> $shippingAddress</p>
+                        <p><strong>Phương thức thanh toán:</strong> $paymentMethod</p>
+                        <hr>
+                        <h4>Sản phẩm:</h4>
+                        <p>$itemList</p>
+                        <p><strong>Tổng tiền:</strong> " . number_format($totalAmount) . " VNĐ</p>
+                    ";
+                    $mailAdmin->send();
+                } catch (Exception $e) {
+                    error_log("Lỗi gửi mail cho admin: " . $mailAdmin->ErrorInfo);
+                }
+
+                // Gửi email cho khách hàng
+                try {
+                    $mailUser = new PHPMailer(true);
+                    $mailUser->isSMTP();
+                    $mailUser->Host = 'smtp.gmail.com';
+                    $mailUser->SMTPAuth = true;
+                    $mailUser->Username = 'thaibao250306@gmail.com'; // tài khoản gửi
+                    $mailUser->Password = 'qseg dgnj qwxn rdpi';     // mật khẩu ứng dụng
+                    $mailUser->SMTPSecure = 'tls';
+                    $mailUser->Port = 587;
+
+                    $mailUser->setFrom('thaibao250306@gmail.com', '8XBET Shop');
+                    $mailUser->addAddress($customerEmail, $customerName);
+
+                    $mailUser->isHTML(true);
+                    $mailUser->CharSet = 'UTF-8';
+                    $mailUser->Subject = "Xác nhận đơn hàng của bạn tại 8XBET - Mã đơn #$orderId";
+                    $mailUser->Body = "
+                        <h2>Cảm ơn bạn đã đặt hàng tại 8XBET!</h2>
+                        <p><strong>Khách hàng:</strong> $customerName</p>
+                        <p><strong>Email:</strong> $customerEmail</p>
+                        <p><strong>Điện thoại:</strong> $customerPhone</p>
+                        <p><strong>Địa chỉ:</strong> $shippingAddress</p>
+                        <p><strong>Phương thức thanh toán:</strong> $paymentMethod</p>
+                        <hr>
+                        <h4>Sản phẩm đã đặt:</h4>
+                        <p>$itemList</p>
+                        <p><strong>Tổng tiền:</strong> " . number_format($totalAmount) . " VNĐ</p>
+                        <p>Chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng trong thời gian sớm nhất.</p>
+                    ";
+                    $mailUser->send();
+                } catch (Exception $e) {
+                    error_log("Lỗi gửi mail cho khách: " . $mailUser->ErrorInfo);
+                }
+
+                $_SESSION['success_message'] = "Đơn hàng của bạn đã được đặt thành công. Thông tin chi tiết đã được gửi đến email của bạn và admin.";
+                unset($_SESSION['cart']);
+                header('Location: /du_an/8Xbet/app/views/Order/thank-you.php');
+                exit();
             } catch (Exception $e) {
-                // 8. Nếu có lỗi, rollback transaction
                 $pdo->rollBack();
                 $_SESSION['error_message'] = "Đã có lỗi xảy ra trong quá trình xử lý đơn hàng: " . $e->getMessage();
-                header('Location: checkout'); // Chuyển hướng trở lại trang thanh toán
+                header('Location: checkout');
                 exit();
             }
         }
@@ -109,4 +162,3 @@ class CheckoutController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-?>
