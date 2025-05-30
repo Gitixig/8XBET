@@ -93,7 +93,7 @@ $productlist = mysqli_query($conn, 'SELECT * FROM players');
 
         <div class="row row-custom">
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
                         <img src="<?= htmlspecialchars($item['photo']) ?>" alt="Ảnh cầu thủ">
                         <div class="product-info">

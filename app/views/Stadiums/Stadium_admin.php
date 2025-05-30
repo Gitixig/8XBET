@@ -92,29 +92,29 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
     <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="row row-custom">
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
                         <img src="<?= $item['image'] ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
                             <h4><?= htmlspecialchars($item['name']) ?></h4>
                             <p>Sức chứa: <?= htmlspecialchars($item['capacity']) ?></p>
                             <p>Quốc gia:
-                                <img id="country-flag" 
-                                     src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png" 
-                                     style="height: 35px; width: 45px; margin-left: 20px;">
+                                <img id="country-flag"
+                                    src="/du_an/8XBET/app/views/layout/flags/<?= strtolower(str_replace(' ', '-', $item['country'])) ?>.png"
+                                    style="height: 35px; width: 45px; margin-left: 20px;">
                                 <?= htmlspecialchars($item['country']) ?>
                             </p>
                             <p>Giá: <?= htmlspecialchars($item['price']) ?></p>
                         </div>
                         <div class="product-action">
                             <a href="<?php echo $base_url; ?>/index.php?controller=stadium&action=edit_stadium&id=<?php echo $item['id']; ?>"
-                               class="button">
+                                class="button">
                                 Chỉnh sửa
                             </a>
 
                             <a href="<?php echo $base_url; ?>/index.php?controller=stadium&action=delete_stadium&id=<?php echo $item['id']; ?>"
-                               class="button"
-                               onclick="return confirm('Bạn có chắc chắn muốn xóa sân vận động này?');">
+                                class="button"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa sân vận động này?');">
                                 Xóa
                             </a>
                         </div>

@@ -49,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'] ?? '';
 
     // Xử lý ảnh mới (nếu có upload ảnh)
-    $avatar = $coach['avatar']; // Mặc định giữ ảnh cũ
-    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
+    $photo = $coach['photo']; // Mặc định giữ ảnh cũ
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $uploadDir = '/du_an/8XBET/public/uploads/';
-        $avatarPath = $uploadDir . basename($_FILES['avatar']['name']);
-        if (move_uploaded_file($_FILES['avatar']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $avatarPath)) {
+        $avatarPath = $uploadDir . basename($_FILES['photo']['name']);
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $avatarPath)) {
             $avatar = $avatarPath; // Cập nhật đường dẫn ảnh mới
         } else {
             echo "Lỗi khi tải lên ảnh.";
@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update DB
-    $updateQuery = "UPDATE coaches SET name=?, dob=?, country=?, formation=?, play_style=?, price=?, avatar=? WHERE id=?";
+    $updateQuery = "UPDATE coaches SET name=?, dob=?, country=?, formation=?, play_style=?, price=?, photo=? WHERE id=?";
     $updateStmt = mysqli_prepare($conn, $updateQuery);
-    mysqli_stmt_bind_param($updateStmt, 'sssssdsi', $name, $dob, $country, $formation, $play_style, $price, $avatar, $id);
+    mysqli_stmt_bind_param($updateStmt, 'sssssdsi', $name, $dob, $country, $formation, $play_style, $price, $photo, $id);
     if (mysqli_stmt_execute($updateStmt)) {
         header("Location: /du_an/8XBET/index.php?controller=coach&action=coach_admin");
         exit();
@@ -134,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>Chỉnh Sửa Huấn Luyện Viên</h2>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="avatar-preview">
-                    <?php if (!empty($coach['avatar'])): ?>
-                        <img src="<?= htmlspecialchars($coach['avatar']) ?>" alt="Avatar">
+                    <?php if (!empty($coach['photo'])): ?>
+                        <img src="<?= htmlspecialchars($coach['photo']) ?>" alt="Avatar">
                     <?php endif; ?>
                 </div>
 

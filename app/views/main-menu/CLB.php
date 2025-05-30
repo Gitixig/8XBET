@@ -123,59 +123,56 @@
 
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <div class="container">
+    <div class="container"style="margin-top: 20px; margin-bottom: 20px;">
+        <h1 class="text-center mb-4">Danh Sách Các Câu Lạc Bộ Ngoại Hạng Anh</h1>
         <div class="row g-3">
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:red;">
-                <img src="../../../public/img/logo-CLB/MU.png" style="width: 150px;">
+                    <img src="../../../public/img/logo-CLB/MU.png" style="width: 150px;">
                     <div class="product-info">
                         <div class="product-title">Manchester United</div>
                     </div>
                     <div class="product-action">
-                        <a class="button" href="../CLB/manchester-united.php">Xem Chi Tiết
-                        </a>
+                        <a class="button" href="../CLB/manchester-united.php">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:deepskyblue;">
                     <img src="../../../public/img/logo-CLB/MC.png" style="width: 150px;">
                     <div class="product-info">
                         <div class="product-title">Manchester City</div>
                     </div>
                     <div class="product-action">
-                        <a class="button" href="../CLB/manchester-city.php">Xem Chi Tiết
-                        </a>
+                        <a class="button" href="../CLB/manchester-city.php">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:rgb(7, 0, 201);">
                     <img src="../../../public/img/logo-CLB/Chelsea.png" style="width: 150px;">
                     <div class="product-info">
                         <div class="product-title">Chelsea</div>
                     </div>
                     <div class="product-action">
-                        <a class="button" href="../CLB/Chelsea.php">Xem Chi Tiết
-                        </a>
+                        <a class="button" href="../CLB/Chelsea.php">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:darkgray;">
                     <img src="../../../public/img/logo-CLB/New.png" style="width: 150px;">
                     <div class="product-info">
-                        <d class="product-title">Newcastle United</d>
+                        <div class="product-title">Newcastle United</div>
                     </div>
                     <div class="product-action">
-                        <a class="button" href="../CLB/Newcasble.php">Xem Chi Tiết
-                        </a>
+                        <a class="button" href="../CLB/Newcasble.php">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="product-box" style="background-color:brown  ;">
-                  <center>  <img src="../../../public/img/logo-CLB/AstonVilla.png" style="width:315px;"> </center>     
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="product-box" style="background-color:brown;">
+                    <center><img src="../../../public/img/logo-CLB/AstonVilla.png" style="width:315px;"></center>
                     <div class="product-info">
                         <div class="product-title">Aston Villa</div>
                     </div>
@@ -184,7 +181,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:darkred;">
                     <img src="../../../public/img/logo-CLB/Bournemouth.png" style="width: 178px;">
                     <div class="product-info">
@@ -195,7 +192,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:indianred;">
                     <img src="../../../public/img/logo-CLB/Brentford.png" style="width: 178px;">
                     <div class="product-info">
@@ -206,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:cornflowerblue;">
                     <img src="../../../public/img/logo-CLB/Brighton.png" style="width: 178px;">
                     <div class="product-info">
@@ -217,7 +214,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:dodgerblue">
                     <img src="../../../public/img/logo-CLB/CrystalPalace.png" style="width: 178px;">
                     <div class="product-info">
@@ -228,7 +225,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:rgb(11, 6, 148)">
                     <img src="../../../public/img/logo-CLB/Everton.png" style="width: 175px;">
                     <div class="product-info">
@@ -239,7 +236,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:rgb(239, 239, 239)">
                     <img src="../../../public/img/logo-CLB/Fulham.png" style="width: 133px;">
                     <div class="product-info">
@@ -250,7 +247,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="product-box" style="background-color:lightpink">
                     <img src="../../../public/img/logo-CLB/Liverpool.png" style="width: 130px;">
                     <div class="product-info">

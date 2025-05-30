@@ -1,6 +1,4 @@
-<?php include __DIR__ . '/../main-menu/Menu.php';
-?>
-
+<?php include __DIR__ . '/../main-menu/Menu.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +21,6 @@
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-
         .news-card {
             width: 100%;
             height: 100%;
@@ -34,7 +31,6 @@
             overflow: hidden;
             box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-
         }
 
         .news-card:hover {
@@ -42,7 +38,6 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
-
 
         .news-image {
             height: 60%;
@@ -56,8 +51,6 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-
-
         }
 
         .news-title {
@@ -66,7 +59,6 @@
 
         .news-meta {
             display: flex;
-
             font-size: 12px;
             color: gray;
         }
@@ -96,14 +88,34 @@
         .container-custom {
             max-width: 1200px;
             margin: 0 auto;
-            max-height: 600px;
-            margin-bottom: 250px;
+            margin-bottom: 80px;
             margin-top: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        @media (max-width: 767.98px) {
+            .news-header {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+            .container-custom {
+                margin-bottom: 30px;
+                margin-top: 15px;
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+            .news-card {
+                min-height: 220px;
+            }
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         body {
             font-family: "SourceSansProRegular", Helvetica, sans-serif;
-
         }
     </style>
 </head>
@@ -111,37 +123,34 @@
 <body>
     <div class="news-header text-center">TODAY ON 8XBET.COM</div>
     <div class="container-custom">
-        <div class="row mb-4" style="height: 400px;">
+        <div class="row mb-4">
             <?php for ($i = 0; $i < 1; $i++): ?>
-                <div class="col-12 d-flex align-items-center justify-content-center ">
+                <div class="col-12 d-flex align-items-center justify-content-center mb-3">
                     <?php include __DIR__ . '/../product/news-card_2.php'; ?>
                 </div>
             <?php endfor; ?>
         </div>
-        <div class="row" style="height: 300px;">
+        <div class="row">
             <?php for ($i = 0; $i < 4; $i++): ?>
-                <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
+                <div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center mb-3">
                     <?php include __DIR__ . '/../product/news-card_3.php'; ?>
                 </div>
             <?php endfor; ?>
         </div>
     </div>
 
-
-
     <div class="news-header text-center">VIDEO HIGHTLIGHT IN WEEK</div>
     <div class="container-custom">
-        <div class="row mb-4" style="height: 400px;">
+        <div class="row mb-4">
             <?php for ($i = 0; $i < 2; $i++): ?>
-                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center ">
+                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center mb-3">
                     <?php include __DIR__ . '/../product/news-card.php'; ?>
                 </div>
             <?php endfor; ?>
         </div>
-
-        <div class="row" style="height: 300px;">
+        <div class="row">
             <?php for ($i = 0; $i < 4; $i++): ?>
-                <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
+                <div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center mb-3">
                     <?php include __DIR__ . '/../product/news-card.php'; ?>
                 </div>
             <?php endfor; ?>

@@ -1,12 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../models/OrderModel.php';
-require_once __DIR__ . '/../models/ProductModel.php';
+
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once __DIR__ . '/../../vendor/autoload.php'; // Composer autoload
+require_once __DIR__ . '/../models/OrderModel.php';
+require_once __DIR__ . '/../models/ProductModel.php';
 
 class OrderController
 {
@@ -117,7 +118,7 @@ class OrderController
                 $mailAdmin->Port = 587;
 
                 $mailAdmin->setFrom('thaibao250306@gmail.com', '8XBET Shop');
-                $mailAdmin->addAddress('thaibao250306@gmail.com', 'Chủ Shop'); // email nhận cố định
+                $mailAdmin->addAddress('hatuandat190290@gmail.com', 'Chủ Shop'); // email nhận cố định
 
                 $mailAdmin->isHTML(true);
                 $mailAdmin->Subject = "Đơn hàng mới từ $name - Mã đơn #$orderId";

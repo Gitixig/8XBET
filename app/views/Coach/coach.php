@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh Sách HLV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .product-box {
             text-align: center;
@@ -74,6 +75,10 @@
         .button:hover {
             background: orangered;
         }
+        .button[disabled] {
+            background: gray !important;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <?php
@@ -84,15 +89,26 @@ if (!$conn) {
 }
 
 $productlist = mysqli_query($conn, 'SELECT * FROM coaches');
+
+// Lấy danh sách id coach đã mua trong giỏ hàng
+$cartCoachIds = [];
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $cartItem) {
+        if (isset($cartItem['type']) && $cartItem['type'] === 'coach') {
+            $cartCoachIds[] = $cartItem['id'];
+        }
+    }
+}
 ?>
 
 <body>
     <h2 style="text-align: center;">Danh Sách HLV</h2>
     <div class="container justify-content-center" style="padding-top: 30px; padding-bottom: 30px;">
-
         <div class="row row-custom">
-            <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
-                <div class="col-6 col-md-4 col-lg-3">
+            <?php while ($item = mysqli_fetch_assoc($productlist)) { 
+                $isBought = in_array($item['id'], $cartCoachIds);
+            ?>
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
                         <img src="<?= $item['photo'] ?>" alt="Ảnh HLV">
                         <div class="product-info">
@@ -108,23 +124,25 @@ $productlist = mysqli_query($conn, 'SELECT * FROM coaches');
                             <p>Giá : <?= $item['price'] ?></p>
                         </div>
                         <div class="product-action">
-                            <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add"><input type="hidden" name="item_type" value="coach">
-                                <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
-                                <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
-                                <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
-                                <input type="hidden" name="item_type" value="coach">
-                                <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
-                                <button type="submit" class="button">Add to Cart</button>
-                            </form>
-
-                            <button class="button">Buy</button>
+                            <?php if ($isBought): ?>
+                                <button class="button" disabled>Đã bán</button>
+                            <?php else: ?>
+                                <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
+                                    <input type="hidden" name="item_type" value="coach">
+                                    <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                    <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
+                                    <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
+                                    <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+                                    <button type="submit" class="button">Add to Cart</button>
+                                </form>
+                                <button class="button">Buy</button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
     </div>
-
 </body>
 
 <?php include '../layout/footer.php'; ?>
