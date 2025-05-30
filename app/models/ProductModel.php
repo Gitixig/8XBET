@@ -30,11 +30,16 @@ class ProductModel
 
     public function getProductById($id)
     {
-        $stmt = $this->db->prepare("SELECT id, name, price FROM products WHERE id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $this->db->prepare("SELECT id, name, price, quantity FROM products WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function decreaseQuantity($productId, $qty)
+    {
+    $stmt = $this->db->prepare("UPDATE products SET quantity = quantity - ? WHERE id = ? AND quantity >= ?");
+    $stmt->execute([$qty, $productId, $qty]);
+    }
     /**
      * Lấy danh sách huấn luyện viên
      * @return array
@@ -97,7 +102,7 @@ class ProductModel
      */
     public function insertProduct($name, $price, $type)
     {
-        $stmt = $this->db->prepare("INSERT INTO products (Name, Price, type) VALUES (?, ?, ?)");
-        $stmt->execute([$name, $price, $type]);
+    $stmt = $this->db->prepare("INSERT INTO products (Name, Price, type, quantity) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$name, $price, $type, 1]); 
     }
 }

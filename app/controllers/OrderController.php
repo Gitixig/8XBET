@@ -2,7 +2,9 @@
 
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-
+require_once __DIR__ . '/../libraries/PHPMailer-master/src/PHPMailer.php';
+require_once __DIR__ . '/../libraries/PHPMailer-master/src/SMTP.php';
+require_once __DIR__ . '/../libraries/PHPMailer-master/src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -94,11 +96,22 @@ class OrderController
 
             // Thêm chi tiết đơn hàng
             foreach ($cartItems as $item) {
-                $product = $productModel->getProductById($item['id']);
-                if ($product && isset($product['price'])) {
-                    $orderModel->addOrderItem($orderId, $item['id'], $item['quantity'], $product['price']);
-                }
+            $product = $productModel->getProductById($item['id']);
+            if ($product && isset($product['price'])) {
+            // Kiểm tra tồn kho
+            if ($product['quantity'] < $item['quantity']) {
+                echo "Sản phẩm '{$product['name']}' không đủ hàng trong kho. Còn lại: {$product['quantity']}";
+                return;
             }
+
+            // Thêm chi tiết đơn hàng
+            $orderModel->addOrderItem($orderId, $item['id'], $item['quantity'], $product['price']);
+
+            // Trừ số lượng kho
+            $productModel->decreaseQuantity($item['id'], $item['quantity']);
+            }
+        }
+
 
             // Chuẩn bị nội dung sản phẩm cho email
             $itemList = "";

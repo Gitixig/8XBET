@@ -60,7 +60,7 @@ class CartController
         include __DIR__ . '/../views/carts/index.php';
     }
 
-    public function add()
+   public function add()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $item_id = $_POST['item_id'];
@@ -69,11 +69,23 @@ class CartController
         $item_type = $_POST['item_type'];
         $redirect_url = $_POST['redirect_url'];
 
-        // Khởi tạo giỏ hàng nếu chưa tồn tại
+        // Kiểm tra tồn kho nếu là sản phẩm thường (product)
+        if ($item_type === 'product') {
+            $productModel = new ProductModel();
+            $product = $productModel->getProductById($item_id);
+            if (!$product || $product['quantity'] <= 0) {
+                $_SESSION['error'] = "Sản phẩm '$item_name' đã hết hàng.";
+                header('Location: ' . $redirect_url);
+                exit;
+            }
+        }
+
+        // Khởi tạo giỏ hàng nếu chưa có
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
 
+        // Kiểm tra sản phẩm đã có trong giỏ chưa
         $already_in_cart = false;
         foreach ($_SESSION['cart'] as $item) {
             if ($item['id'] == $item_id && $item['type'] == $item_type) {
@@ -83,21 +95,19 @@ class CartController
         }
 
         if (!$already_in_cart) {
-            // Sản phẩm chưa có trong giỏ hàng, thêm nó vào
             $_SESSION['cart'][] = [
                 'id' => $item_id,
                 'name' => $item_name,
                 'price' => $item_price,
                 'type' => $item_type,
-                'quantity' => 1 // Mặc định số lượng là 1 khi thêm mới
+                'quantity' => 1
             ];
             $_SESSION['success'] = "Đã thêm '$item_name' vào giỏ hàng.";
         } else {
-            // Sản phẩm đã có trong giỏ hàng
             $_SESSION['error'] = "Sản phẩm '$item_name' đã có trong giỏ hàng của bạn.";
         }
 
-        // Chuyển hướng về trang trước
+        // Chuyển hướng
         header('Location: ' . $redirect_url);
         exit;
     }
