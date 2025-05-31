@@ -66,15 +66,15 @@ class StadiumController
             $capacity = $_POST['capacity'] ?? '';
             $country = $_POST['country'] ?? '';
             $price = $_POST['price'] ?? '';
-            $image = $stadium['image']; 
+            $photo = $stadium['photo']; 
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                $imagePath = '/du_an/8XBET/public/uploads/' . basename($_FILES['image']['name']);
-                move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $imagePath);
-                $image = $imagePath;
+            if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+                $photoPath = '/du_an/8XBET/public/uploads/' . basename($_FILES['photo']['name']);
+                move_uploaded_file($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $photoPath);
+                $photo = $photoPath;
             }
 
-            if ($stadiumModel->updateStadium($id, $name, $capacity, $country, $price, $image)) {
+            if ($stadiumModel->updateStadium($id, $name, $capacity, $country, $price, $photo)) {
                 echo "<script>window.location.href = '/du_an/8XBET/index.php?controller=stadium&action=stadium_admin';</script>";
                 exit;
             } else {

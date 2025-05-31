@@ -16,7 +16,7 @@ class StadiumModel
         return $stmt->fetchAll((PDO::FETCH_ASSOC));
     }
 
-    public static function create($name, $capacity, $country, $price, $image)
+    public static function create($name, $capacity, $country, $price, $photo)
     {
         $dbConfig = include __DIR__ . '/../../config/config.php';
         $pdo = new PDO(
@@ -26,29 +26,29 @@ class StadiumModel
         );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $pdo->prepare("INSERT INTO stadiums (name, capacity, country, price, image) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$name, $capacity, $country, $price, $image]);
+        $stmt = $pdo->prepare("INSERT INTO stadiums (name, capacity, country, price, photo) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $capacity, $country, $price, $photo]);
     }
 
 
     public function getStadiumByField($field, $value)
     {
-        $allowedFields = ['id', 'name', 'capacity', 'country', 'price', 'image'];
+        $allowedFields = ['id', 'name', 'capacity', 'country', 'price', 'photo'];
         if (!in_array($field, $allowedFields)) {
             throw new InvalidArgumentException("Invalid field: $field");
         }
 
-        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `image` FROM `stadiums` WHERE {$field} = ?");
+        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `photo` FROM `stadiums` WHERE {$field} = ?");
         $stmt->execute([$value]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
 
-    public function updateStadium($id, $name, $capacity, $country, $price, $image)
+    public function updateStadium($id, $name, $capacity, $country, $price, $photo)
     {
-        $stmt = $this->db->prepare("UPDATE stadiums SET name = ?, capacity = ?, country = ?, price = ?, image = ? WHERE id = ?");
-        return $stmt->execute([$name, $capacity, $country, $price, $image, $id]);
+        $stmt = $this->db->prepare("UPDATE stadiums SET name = ?, capacity = ?, country = ?, price = ?, photo = ? WHERE id = ?");
+        return $stmt->execute([$name, $capacity, $country, $price, $photo, $id]);
     }
 
 
@@ -56,7 +56,7 @@ class StadiumModel
 
     public function getStadiumById($id)
     {
-        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `image` FROM `stadiums` WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT `id`, `name`, `capacity`, `country`, `price`, `photo` FROM `stadiums` WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

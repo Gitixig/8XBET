@@ -129,12 +129,13 @@ class OrderController
                 $mailAdmin->Password = 'iopa yqia soew ylmn';     // mật khẩu ứng dụng
                 $mailAdmin->SMTPSecure = 'tls';
                 $mailAdmin->Port = 587;
+                $mailAdmin->CharSet = 'UTF-8';
 
                 $mailAdmin->setFrom('thaibao250306@gmail.com', '8XBET Shop');
                 $mailAdmin->addAddress('hatuandat190290@gmail.com', 'Chủ Shop'); // email nhận cố định
 
                 $mailAdmin->isHTML(true);
-                $mailAdmin->Subject = "Đơn hàng mới từ $name - Mã đơn #$orderId";
+                $mailAdmin->Subject = "Don hang moi tu $name - Ma Don #$orderId";
                 $mailAdmin->Body = "
                     <h2>Thông tin đơn hàng mới</h2>
                     <p><strong>Khách hàng:</strong> $name</p>

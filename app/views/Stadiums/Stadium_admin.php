@@ -94,7 +94,7 @@ $productlist = mysqli_query($conn, 'SELECT * FROM stadiums');
             <?php while ($item = mysqli_fetch_assoc($productlist)) { ?>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="product-box" style="margin: 20px;">
-                        <img src="<?= $item['image'] ?>" alt="Ảnh Sân Vận Động">
+                        <img src="<?= $item['photo'] ?>" alt="Ảnh Sân Vận Động">
                         <div class="product-info">
                             <h4><?= htmlspecialchars($item['name']) ?></h4>
                             <p>Sức chứa: <?= htmlspecialchars($item['capacity']) ?></p>
