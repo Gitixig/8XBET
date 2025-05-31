@@ -95,8 +95,6 @@ $base_url = $config['base_url'];
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/app/views/add_player/add_player.php">Thêm cầu thủ</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/app/views/list_player/list_player_admin.php">Danh sách cầu thủ</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/index.php?controller=user&action=listUsers">Danh sách người dùng</a></li>
-                        <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=club&action=add">Thêm câu lạc bộ</a></li>
-                        <li class="nav-item"><a class="nav-link text-warning" href="/index.php?controller=club&action=list">Danh sách câu lạc bộ</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/index.php?controller=coach&action=add">Thêm câu HLV</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/index.php?controller=coach&action=coach_admin">Danh sách HLV</a></li>
                         <li class="nav-item"><a class="nav-link text-warning" href="<?php echo $base_url; ?>/index.php?controller=stadium&action=add">Thêm Sân Bóng </a></li>
