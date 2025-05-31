@@ -29,11 +29,6 @@
                             <td><?= number_format($order['total_price'], 0) ?> VNĐ</td>
                             <td><?= htmlspecialchars($item['product_name'] ?? 'N/A') ?></td>
                             <td><?= htmlspecialchars($item['quantity'] ?? 'N/A') ?></td>
-                            <td>
-                                <a href="/du_an/8XBET/index.php?controller=Order&action=detail&id=<?= htmlspecialchars($order['id']) ?>" class="btn btn-info btn-sm">
-                                    Xem chi tiết
-                                </a>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
