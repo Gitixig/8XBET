@@ -132,7 +132,7 @@ class OrderController
                 $mailAdmin->CharSet = 'UTF-8';
 
                 $mailAdmin->setFrom('thaibao250306@gmail.com', '8XBET Shop');
-                $mailAdmin->addAddress('hatuandat190290@gmail.com', 'Chủ Shop'); // email nhận cố định
+                $mailAdmin->addAddress('thaibao250306@gmail.com', 'Chủ Shop'); // email nhận cố định
 
                 $mailAdmin->isHTML(true);
                 $mailAdmin->Subject = "Don hang moi tu $name - Ma Don #$orderId";
