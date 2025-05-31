@@ -127,6 +127,7 @@ if (isset($_SESSION['cart'])) {
                             <?php if ($isBought): ?>
                                 <button class="button" disabled>Đã bán</button>
                             <?php else: ?>
+                                  <a href="/du_an/8XBET/index.php?controller=Product&action=view&id=<?= htmlspecialchars($item['id']) ?>" class="button">Chi tiết</a>
                                 <form method="post" action="/du_an/8XBET/index.php?controller=Cart&action=add">
                                     <input type="hidden" name="item_type" value="coach">
                                     <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
@@ -135,7 +136,7 @@ if (isset($_SESSION['cart'])) {
                                     <input type="hidden" name="redirect_url" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
                                     <button type="submit" class="button">Add to Cart</button>
                                 </form>
-                                <button class="button">Buy</button>
+                               
                             <?php endif; ?>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 <a href="https://www.youtube.com/watch?v=6qLmVFhHXNo" target="_blank" class="w-100 h-100" style="text-decoration: none; color: inherit;">
     <div class="news-card">
-        <div class="news-image" style="background-image: url('../../../public/img/img-tintuc/videomuchelsea.png'); height: 200px;">
+        <div class="news-image" style="background-image: url('/du_an/8XBET/public/img/img-tintuc/videomuchelsea.png'); height: 200px;">
         </div>
         <div class="news-content">
             <div class="news-title">

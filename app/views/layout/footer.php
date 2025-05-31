@@ -67,7 +67,9 @@
       <div class="row">
 
         <div class="col-md-3 mb-4">
-          <img src="../../../public/img/img-logo/logo.png" alt="Logo" style="width: 120px;">
+         <img src="<?php echo $base_url; ?>/public/img/img-logo/logo.png"
+                    style="width: 70px; height: auto; object-fit: contain;"
+                    alt="Logo">
           <p class="mt-3">© 2025 Tên Công Ty. All rights reserved.</p>
         </div>
 

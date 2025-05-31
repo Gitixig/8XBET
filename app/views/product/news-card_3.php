@@ -1,6 +1,6 @@
-<a href="/du_an/8XBET/article1" class="w-100 h-100" style=" text-decoration: none; color: inherit;">
+<a href="https://bongda24h.vn/bong-da-anh/hlv-ruben-amorim-mang-tin-vui-cho-mu-172-421237.html" class="w-100 h-100" style=" text-decoration: none; color: inherit;">
     <div class="news-card">
-        <div class="news-image" style="background-image: url('../../../public/img/img-HLV/amorim.png'); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 200px;">
+        <div class="news-image" style="background-image: url('/du_an/8XBET/public/img/img-HLV/amorim.png'); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 200px;">
         </div>
         <div class="news-content">
             <div class="news-title">HLV Ruben Amorim mang tin vui cho MU</div>
