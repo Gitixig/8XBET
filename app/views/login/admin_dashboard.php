@@ -20,15 +20,16 @@ include __DIR__ . '/../layout/header.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        font-family: Arial, sans-serif;
-        background-image: url('/du_an/8XBET/public/img_admin_login/1742660101_download.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+      body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('/du_an/8XBET/public/img_admin_login/romes.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50% auto;  /* Thu nhỏ ảnh chỉ chiếm 50% chiều ngang, chiều cao tự động */
+    background-color: #000; /* Màu nền đen hoặc màu bạn muốn */
+}
 
     .admin-dashboard {
         margin-top: 50px;
